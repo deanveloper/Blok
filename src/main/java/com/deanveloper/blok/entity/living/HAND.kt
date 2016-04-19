@@ -1,6 +1,6 @@
 package com.deanveloper.blok.entity.living
 
 enum class Hand {
-	RIGHT,
-	LEFT
+	MAIN_HAND,
+	OFF_HAND
 }

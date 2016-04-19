@@ -1,5 +1,6 @@
 package com.deanveloper.blok.entity.living
 
+import com.deanveloper.blok.block.Block
 import com.deanveloper.blok.placeholders.*
 import com.deanveloper.blok.util.ImmutableLocation
 import com.deanveloper.blok.util.Location
