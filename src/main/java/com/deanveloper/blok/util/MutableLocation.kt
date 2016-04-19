@@ -39,7 +39,6 @@ open class MutableLocation(
 		return this
 	}
 
-
 	/** @see [Vector.plus] */
 	override operator fun plus(o: Vector): MutableLocation {
 		x += o.x
@@ -48,6 +47,8 @@ open class MutableLocation(
 
 		return this
 	}
+
+	fun toImmutable() = ImmutableLocation(world, x, y, z)
 
 	/** @see [Vector.clone] */
 	override fun clone() = MutableVector(x, y, z)

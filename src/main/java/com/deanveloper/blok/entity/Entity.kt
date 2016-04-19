@@ -1,7 +1,7 @@
 package com.deanveloper.blok.entity
 
+import com.deanveloper.blok.util.ImmutableLocation
 import com.deanveloper.blok.util.ImmutableVector
-import com.deanveloper.blok.util.Location
 
 /**
  * @author Dean B
@@ -15,7 +15,7 @@ interface Entity {
 	/**
 	 * The entity's location
 	 */
-	val location: Location
+	var location: ImmutableLocation
 
 	/**
 	 * The distance that the entity has traveled so far within the tick

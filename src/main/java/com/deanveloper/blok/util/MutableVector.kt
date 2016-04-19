@@ -46,6 +46,8 @@ open class MutableVector(
 		return this
 	}
 
+	fun toImmutable() = ImmutableVector(x, y, z)
+
 	/** @see [Vector.clone] */
 	override fun clone() = MutableVector(x, y, z)
 }
