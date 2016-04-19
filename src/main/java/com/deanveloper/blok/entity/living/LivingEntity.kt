@@ -1,12 +1,14 @@
 package com.deanveloper.blok.entity.living
 
 import com.deanveloper.blok.entity.Entity
-import com.deanveloper.blok.placeholders.ArmorData
+import com.deanveloper.blok.inventory.ArmorData
 import com.deanveloper.blok.placeholders.EntityAI
 import com.deanveloper.blok.placeholders.PotionEffect
 import com.deanveloper.blok.placeholders.PotionType
 
 /**
+ * A living entity
+ *
  * @author Dean B
  */
 interface LivingEntity : Entity {

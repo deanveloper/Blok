@@ -3,9 +3,11 @@ package com.deanveloper.blok.entity.misc
 import java.time.LocalDateTime
 
 /**
+ * A damageable entity
+ *
  * @author Dean B
  */
-interface Damagable {
+interface Damageable {
 	/**
 	 * The health the entity has
 	 */

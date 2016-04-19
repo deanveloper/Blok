@@ -1,6 +1,6 @@
 package com.deanveloper.blok.placeholders
 
-class ArmorData {
+class Scoreboard {
 	init {
 		TODO()
 	}

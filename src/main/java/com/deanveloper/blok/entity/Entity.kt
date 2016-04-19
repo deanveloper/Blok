@@ -4,9 +4,13 @@ import com.deanveloper.blok.util.ImmutableLocation
 import com.deanveloper.blok.util.ImmutableVector
 
 /**
+ * Any entity
+ *
  * @author Dean B
  */
 interface Entity {
+	val attributes: MutableMap<EntityAttribute.EntityAttributeType, EntityAttribute>
+
 	/**
 	 * The entity's id number
 	 */
@@ -33,7 +37,7 @@ interface Entity {
 	var isNameVisible: Boolean
 
 	/**
-	 * If the entity is dead or not
+	 * If the entity is dead or not.
 	 */
 	var isDead: Boolean
 
