@@ -2,6 +2,7 @@ package com.deanveloper.blok.entity
 
 import com.deanveloper.blok.util.ImmutableVector
 import com.deanveloper.blok.util.Location
+import java.time.LocalDateTime
 
 /**
  * @author Dean B
@@ -18,9 +19,14 @@ interface Entity {
 	val location: Location
 
 	/**
-	 * The entity's name (null if none)
+	 * The current health of the entity
 	 */
-	val name: String?
+	var health: Float
+
+	/**
+	 * The entity's name (empty if none)
+	 */
+	val name: String
 
 	/**
 	 * If the entity's name is visible
@@ -46,4 +52,9 @@ interface Entity {
 	 * If the entity can get hurt
 	 */
 	var isInvincible: Boolean
+
+	/**
+	 * The last time the entity was damaged
+	 */
+	var lastDamaged: LocalDateTime
 }
