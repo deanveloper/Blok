@@ -1,5 +1,6 @@
-package com.deanveloper.blok.entity
+package com.deanveloper.blok.entity.living
 
+import com.deanveloper.blok.entity.Entity
 import com.deanveloper.blok.placeholders.ArmorData
 import com.deanveloper.blok.placeholders.EntityAI
 import com.deanveloper.blok.placeholders.PotionEffect
