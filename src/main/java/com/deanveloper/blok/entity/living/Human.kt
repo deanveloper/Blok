@@ -30,12 +30,12 @@ interface Human : LivingEntity {
 	var inventory: HumanInventory
 
 	/**
-	 * Their primary hand
+	 * If they're left handed
 	 */
-	var primaryHand: Hand
+	var leftHanded: Boolean
 
 	/**
-	 * The item in their hand
+	 * The item in one of their hands
 	 */
 	fun itemInHand(hand: Hand): Item
 

@@ -7,6 +7,6 @@ data class ArmorData constructor(
 		var chestplate: Item? = null,
 		var leggings: Item? = null,
 		var boots: Item? = null,
-		var primaryHand: Item? = null,
-		var secondaryHand: Item? = null
+		var mainHand: Item? = null,
+		var offHand: Item? = null
 )
