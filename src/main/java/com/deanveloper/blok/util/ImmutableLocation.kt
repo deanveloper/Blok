@@ -9,7 +9,7 @@ class ImmutableLocation(
 		override final val world: World,
 		override val x: Double,
 		override val y: Double,
-        override val z: Double
+		override val z: Double
 ) : Location(world, x, y, z) {
 	/** @see [Vector.unaryMinus] */
 	override operator fun unaryMinus() = ImmutableVector(-x, -y, -z)

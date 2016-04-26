@@ -8,6 +8,7 @@ class PotionEffect {
 
 enum class PotionType {
 	;
+
 	init {
 		TODO()
 	}

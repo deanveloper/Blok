@@ -39,6 +39,7 @@ interface Damageable {
 
 	enum class DamageCause {
 		;
+
 		init {
 			TODO()
 		}

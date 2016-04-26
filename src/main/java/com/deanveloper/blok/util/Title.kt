@@ -1,6 +1,6 @@
 package com.deanveloper.blok.util
 
-data class Title (
+data class Title(
 		val title: String = "",
 		val subTitle: String = "",
 		val fadeIn: Int = 10,

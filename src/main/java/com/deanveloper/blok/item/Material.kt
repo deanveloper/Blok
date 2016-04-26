@@ -9,33 +9,33 @@ import com.deanveloper.blok.util.Data
  */
 enum class Material {
 
-	AIR(data = SimpleBlockData("air")),
-	STONE(data = StoneData()),
+	AIR(SimpleBlockData("air")),
+	STONE(StoneData()),
 	GRASS(),
-	DIRT(data = DirtData()),
+	DIRT(DirtData()),
 	COBBLESTONE(),
-	PLANKS(data = PlankData()),
-	SAPLING(data = SaplingData()),
+	PLANKS(WoodData.PlankData()),
+	SAPLING(WoodData.SaplingData()),
 	BEDROCK(),
-	FLOWING_WATER(data = FluidData()),
+	FLOWING_WATER(FluidData(FLOWING_WATER)),
 	STILL_WATER("water", SimpleBlockData("water")),
-	FLOWING_LAVA(data = LavaData()),
-	STILL_LAVA("lava", FLOWING_LAVA),
-	SAND(maxDataVal = 1),
+	FLOWING_LAVA(FluidData(FLOWING_LAVA)),
+	STILL_LAVA("lava", SimpleBlockData("lava")),
+	SAND(SandData()),
 	GRAVEL(),
 	GOLD_ORE(),
 	IRON_ORE(),
 	COAL_ORE(),
-	LOG(maxDataVal = 15),
-	LEAVES(maxDataVal = 3),
-	SPONGE(maxDataVal = 1),
+	LOG(WoodData.DoubleWoodData.LogData()),
+	LEAVES(WoodData.DoubleWoodData.LeafData()),
+	SPONGE(SpongeData()),
 	GLASS(),
 	LAPIS_ORE(),
 	LAPIS_BLOCK(),
-	DISPENSER(maxDataVal = 15),
+	DISPENSER(DispenserData()),
 	SANDSTONE(maxDataVal = 2),
 	NOTE_BLOCK("noteblock"),
-	BED_BLOCK("bed", MaterialType.BLOCK, maxDataVal = 15),
+	BED_BLOCK("bed", BedItemData(), BedBlockData()),
 	POWERED_RAIL("golden_rail", maxDataVal = 15),
 	DETECTOR_RAIL(POWERED_RAIL),
 	STICKY_PISTON(),
@@ -175,6 +175,14 @@ enum class Material {
 		this.block = data as? BlockData
 	}
 
+	constructor(data: Data) : this(null, data)
+
+	constructor(id: String) {
+		this.id = id
+		this.item = SimpleItemData(id)
+		this.block = SimpleBlockData(id)
+	}
+
 	constructor() {
 		this.id = name.toLowerCase()
 		this.item = SimpleItemData(id)
@@ -182,17 +190,5 @@ enum class Material {
 	}
 }
 
-class LavaData : BlockData {
-	override val id = "lava"
-	override val intId: Int
-		get() = throw UnsupportedOperationException()
-	override val extraData: Byte
-		get() = throw UnsupportedOperationException()
-
-	override fun clone(): Data {
-		throw UnsupportedOperationException()
-	}
-
-}
 
 

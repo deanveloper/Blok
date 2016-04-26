@@ -7,9 +7,9 @@ import com.deanveloper.blok.placeholders.World
  */
 open class MutableLocation(
 		override var world: World,
-        override var x: Double,
+		override var x: Double,
 		override var y: Double,
-        override var z: Double
+		override var z: Double
 ) : Location(world, x, y, z) {
 
 	/** @see [Vector.unaryMinus] */

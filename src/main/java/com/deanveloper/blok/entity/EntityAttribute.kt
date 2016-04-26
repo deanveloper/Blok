@@ -4,8 +4,10 @@ class EntityAttribute {
 	init {
 		TODO()
 	}
+
 	enum class EntityAttributeType {
 		;
+
 		init {
 			TODO()
 		}

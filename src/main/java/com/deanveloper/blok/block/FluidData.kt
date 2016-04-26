@@ -12,19 +12,20 @@ class FluidData(
 ) : BlockData {
 	override val id = type.id
 
+
 	override val intId: Int
-		get() {
-			if(id == "flowing_water") {
-				return 8
-			} else if(id == "flowing_lava") {
-				return 10
-			} else {
-				throw IllegalStateException()
-			}
+		get() = when (type) {
+			Material.FLOWING_WATER -> 8
+			Material.FLOWING_LAVA -> 10
+			else -> throw IllegalStateException("[type] is not flowing water/lava (is $type)")
 		}
 
 	override val extraData: Byte
-		get() = (if(downward) { distance or 0x8 } else { distance } ).toByte()
+		get() = (if (downward) {
+			distance or 0x8
+		} else {
+			distance
+		} ).toByte()
 
 	override fun clone() = FluidData(type, distance, downward)
 
