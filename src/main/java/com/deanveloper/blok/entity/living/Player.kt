@@ -1,6 +1,6 @@
 package com.deanveloper.blok.entity.living
 
-import com.deanveloper.blok.block.Block
+import com.deanveloper.blok.block.SimpleBlockData
 import com.deanveloper.blok.placeholders.*
 import com.deanveloper.blok.util.ImmutableLocation
 import com.deanveloper.blok.util.Location
@@ -94,7 +94,7 @@ interface Player : Human {
 	/**
 	 * Sends a block change to this player only
 	 */
-	fun localBlockChange(loc: Location, block: Block)
+	fun localBlockChange(loc: Location, blockData: SimpleBlockData)
 
 	/**
 	 * The block at this location for the player

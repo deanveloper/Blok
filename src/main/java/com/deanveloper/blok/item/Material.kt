@@ -1,20 +1,21 @@
 package com.deanveloper.blok.item
 
+import com.deanveloper.blok.block.BlockData
+import com.deanveloper.blok.block.DirtData
+import com.deanveloper.blok.block.SimpleBlockData
+import com.deanveloper.blok.block.StoneData
+import com.deanveloper.blok.util.Data
+
 /**
  * Represents the default list of Minecraft Materials
  * @author Dean B
  */
-enum class Materials(
-		id: String?,
-		intId: Int,
-		materialType: MaterialType,
-		maxDataVal: Byte
-) {
+enum class Material {
 
-	AIR(MaterialType.BLOCK),
-	STONE(maxDataVal = 6),
+	AIR(data = SimpleBlockData("air")),
+	STONE(data = StoneData(StoneData.StoneType.NORMAL)),
 	GRASS(),
-	DIRT(maxDataVal = 2),
+	DIRT(data = DirtData(DirtData.DirtType.NORMAL)),
 	COBBLESTONE(),
 	PLANKS(maxDataVal = 5),
 	SAPLING(maxDataVal = 5),
@@ -139,53 +140,48 @@ enum class Materials(
 	REDSTONE_LAMP_LIT("lit_redstone_lamp"),
 	DOUBLE_WOOD_SLAB(maxDataVal = 5),
 	WOODEN_SLAB(maxDataVal = 11),
-	COCOA_BLOCK("cocoa", MaterialType.BLOCK, 15)
+	COCOA_BLOCK("cocoa", MaterialType.BLOCK, maxDataVal = 15),
+	SANDSTONE_STAIRS(OAK_STAIRS),
+	EMERALD_ORE(),
+	ENDER_CHEST(maxDataVal = 5),
+	TRIPWIRE_HOOK(MaterialType.BLOCK, maxDataVal = 15),
+	TRIPWIRE(MaterialType.BLOCK, maxDataVal = 15),
+	EMERALD_BLOCK(),
+	SPRUCE_STAIRS(OAK_STAIRS),
+	BIRCH_STAIRS(OAK_STAIRS),
+	JUNGLE_STAIRS(OAK_STAIRS),
+	COMMAND_BLOCK(maxDataVal = 15),
+	BEACON(),
+	COBBLESTONE_WALL(maxDataVal = 1),
+	FLOWER_POT_BLOCK("flower_pot", MaterialType.BLOCK, maxDataVal = 13),
+	CARROT_BLOCK("carrots", MaterialType.BLOCK, 7),
+	POTATO_BLOCK("potatoes", MaterialType.BLOCK, 7),
+	WOODEN_BUTTON(STONE_BUTTON),
+	SKULL_BLOCK()
 	;
-	val owner = "minecraft"
-	val id: String;
-	val intId: Int;
-	val materialType: MaterialType;
-	val maxDataVal: Byte
+	val id: String
+	val item: ItemData?
+		get() = field?.clone()
+	val block: BlockData?
+		get() = field?.clone()
 
-	init {
-		this.id = (id ?: name).toLowerCase()
-		this.intId = if (intId < 0) ordinal else intId
-		this.materialType = materialType;
-		this.maxDataVal = maxDataVal
+	constructor(id: String? = null, item: ItemData?, block: BlockData?) {
+		this.id = id?.toLowerCase() ?: this.name.toLowerCase()
+		this.item = item
+		this.block = block
 	}
 
-	constructor(materialType: MaterialType = MaterialType.BOTH, maxDataVal: Byte = 0) : this(
-			null,
-			-1,
-			materialType,
-			maxDataVal
-	)
+	constructor(id: String? = null, data: Data) {
+		this.id = id?.toLowerCase() ?: this.name.toLowerCase()
+		this.item = data as? ItemData
+		this.block = data as? BlockData
+}
 
-	constructor(id: String? = null, materialType: MaterialType = MaterialType.BOTH, maxDataVal: Byte = 0) : this(
-			id,
-			-1,
-			materialType,
-			maxDataVal
-	)
-
-	constructor(id: String, inheritFrom: Materials) : this(
-			id,
-			inheritFrom.materialType,
-			inheritFrom.maxDataVal
-	)
-
-	constructor(inheritFrom: Materials) : this(
-			inheritFrom.materialType,
-			inheritFrom.maxDataVal
-	)
-
-	fun createMaterial(data: Byte = 0): MaterialData {
-		return object : MaterialData() {
-			override val owner = this@Materials.owner
-			override val id = this@Materials.id
-			override val materialType = this@Materials.materialType
-			override val dataValue = data
-			override val intId = this@Materials.intId
-		}
+	constructor() {
+		this.id = name.toLowerCase()
+		this.item = SimpleItemData(id)
+		this.block = SimpleBlockData(id)
 	}
 }
+
+
