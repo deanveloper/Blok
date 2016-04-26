@@ -11,5 +11,6 @@ open class SimpleItemData(
 		override val id: String
 ) : ItemData {
 	override val intId = Magic.stringIdToInt(id)
+	override val extraData: Byte = 0
 	override fun clone() = SimpleItemData(id)
 }

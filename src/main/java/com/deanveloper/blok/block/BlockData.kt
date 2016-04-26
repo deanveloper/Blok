@@ -8,5 +8,4 @@ import com.deanveloper.blok.util.Data
  * @author Dean B
  */
 interface BlockData : Data {
-	override fun clone(): BlockData
 }

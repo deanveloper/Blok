@@ -1,9 +1,6 @@
 package com.deanveloper.blok.item
 
-import com.deanveloper.blok.block.BlockData
-import com.deanveloper.blok.block.DirtData
-import com.deanveloper.blok.block.SimpleBlockData
-import com.deanveloper.blok.block.StoneData
+import com.deanveloper.blok.block.*
 import com.deanveloper.blok.util.Data
 
 /**
@@ -13,16 +10,16 @@ import com.deanveloper.blok.util.Data
 enum class Material {
 
 	AIR(data = SimpleBlockData("air")),
-	STONE(data = StoneData(StoneData.StoneType.NORMAL)),
+	STONE(data = StoneData()),
 	GRASS(),
-	DIRT(data = DirtData(DirtData.DirtType.NORMAL)),
+	DIRT(data = DirtData()),
 	COBBLESTONE(),
-	PLANKS(maxDataVal = 5),
-	SAPLING(maxDataVal = 5),
+	PLANKS(data = PlankData()),
+	SAPLING(data = SaplingData()),
 	BEDROCK(),
-	FLOWING_WATER(MaterialType.BLOCK),
-	STILL_WATER("water", FLOWING_WATER),
-	FLOWING_LAVA(MaterialType.BLOCK),
+	FLOWING_WATER(data = FluidData()),
+	STILL_WATER("water", SimpleBlockData("water")),
+	FLOWING_LAVA(data = LavaData()),
 	STILL_LAVA("lava", FLOWING_LAVA),
 	SAND(maxDataVal = 1),
 	GRAVEL(),
@@ -159,6 +156,7 @@ enum class Material {
 	WOODEN_BUTTON(STONE_BUTTON),
 	SKULL_BLOCK()
 	;
+
 	val id: String
 	val item: ItemData?
 		get() = field?.clone()
@@ -175,13 +173,26 @@ enum class Material {
 		this.id = id?.toLowerCase() ?: this.name.toLowerCase()
 		this.item = data as? ItemData
 		this.block = data as? BlockData
-}
+	}
 
 	constructor() {
 		this.id = name.toLowerCase()
 		this.item = SimpleItemData(id)
 		this.block = SimpleBlockData(id)
 	}
+}
+
+class LavaData : BlockData {
+	override val id = "lava"
+	override val intId: Int
+		get() = throw UnsupportedOperationException()
+	override val extraData: Byte
+		get() = throw UnsupportedOperationException()
+
+	override fun clone(): Data {
+		throw UnsupportedOperationException()
+	}
+
 }
 
 

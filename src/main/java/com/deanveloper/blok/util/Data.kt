@@ -5,7 +5,8 @@ package com.deanveloper.blok.util
  */
 interface Data : Cloneable {
 	val id: String
-	val intId: Int
+	@Deprecated("Magic Value") val intId: Int
+	@Deprecated("Magic Value") val extraData: Byte
 
 	override public fun clone(): Data
 }
