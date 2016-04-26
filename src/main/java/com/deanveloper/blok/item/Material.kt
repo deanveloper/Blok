@@ -1,6 +1,7 @@
 package com.deanveloper.blok.item
 
 import com.deanveloper.blok.block.*
+import com.deanveloper.blok.placeholders.Note
 import com.deanveloper.blok.util.Data
 
 /**
@@ -33,8 +34,8 @@ enum class Material {
 	LAPIS_ORE(),
 	LAPIS_BLOCK(),
 	DISPENSER(DispenserData()),
-	SANDSTONE(maxDataVal = 2),
-	NOTE_BLOCK("noteblock"),
+	SANDSTONE(SandstoneData()),
+	NOTE_BLOCK("noteblock", NoteblockData()),
 	BED_BLOCK("bed", BedItemData(), BedBlockData()),
 	POWERED_RAIL("golden_rail", maxDataVal = 15),
 	DETECTOR_RAIL(POWERED_RAIL),
@@ -159,9 +160,9 @@ enum class Material {
 
 	val id: String
 	val item: ItemData?
-		get() = field?.clone()
+		get() = field?.clone() as? ItemData
 	val block: BlockData?
-		get() = field?.clone()
+		get() = field?.clone() as? BlockData
 
 	constructor(id: String? = null, item: ItemData?, block: BlockData?) {
 		this.id = id?.toLowerCase() ?: this.name.toLowerCase()

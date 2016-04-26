@@ -4,7 +4,7 @@ package com.deanveloper.blok.block
  * @author Dean B
  */
 interface Rotatable {
-	val rotation: Direction
+	var rotation: Direction
 
 	enum class Direction(val direction: Int, val biDirection: Int) {
 		DOWN(0, 0),
