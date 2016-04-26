@@ -96,14 +96,14 @@ sealed class WoodData(var type: WoodType) : ItemData, BlockData {
 			override fun clone() = LeafData(type, noDecay, checkDecay);
 		}
 	}
-}
 
 
-enum class WoodType {
-	OAK,
-	SPRUCE,
-	BIRCH,
-	JUNGLE,
-	ACACIA,
-	DARK_OAK
+	enum class WoodType {
+		OAK,
+		SPRUCE,
+		BIRCH,
+		JUNGLE,
+		ACACIA,
+		DARK_OAK
+	}
 }
