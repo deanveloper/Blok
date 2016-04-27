@@ -57,7 +57,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 
 		class Log(
 				type: WoodType = WoodType.OAK,
-				override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH
+				override var facing: Rotatable.Direction = Rotatable.Direction.NORTH
 		) : BaseDoubleWood(type, "log", "log2", 17, 162), Rotatable {
 			override fun clone() = Log(type)
 
@@ -68,7 +68,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 
 					data = data and (0x1 or 0x2)
 
-					data = data or (rotation.biDirection shl 2 and (0x4 or 0x8))
+					data = data or (facing.biDirection shl 2 and (0x4 or 0x8))
 
 					return data.toByte()
 				}

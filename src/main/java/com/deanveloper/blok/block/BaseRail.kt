@@ -47,7 +47,7 @@ sealed class BaseRail(
 				return data.toByte();
 			}
 
-		override fun clone() = PoweredRail(shape, pressed)
+		override fun clone() = DetectorRail(shape, pressed)
 	}
 
 	enum class RailShape {

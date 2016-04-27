@@ -1,6 +1,6 @@
 package com.deanveloper.blok.block
 
-import com.deanveloper.blok.util.Data
+import com.deanveloper.blok.item.ItemData
 
 /**
  * @author Dean B
@@ -13,9 +13,7 @@ class TallGrass(
 	override val extraData: Byte
 		get() = type.ordinal.toByte()
 
-	override fun clone(): Data {
-		throw UnsupportedOperationException()
-	}
+	override fun clone() = TallGrass(type)
 
 
 	enum class GrassType {

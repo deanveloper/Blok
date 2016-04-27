@@ -8,7 +8,7 @@ import com.deanveloper.blok.util.DoubleData
  *
  * @author Dean B
  */
-class Bed(override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH,
+class Bed(override var facing: Rotatable.Direction = Rotatable.Direction.NORTH,
           var occupied: Boolean = false,
           var isHead: Boolean = false
 ) : DoubleData(355, 26), Rotatable {
@@ -18,7 +18,7 @@ class Bed(override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH
 		get() {
 			if(isItem) return 0
 
-			var data: Int = when (rotation) {
+			var data: Int = when (facing) {
 				Rotatable.Direction.SOUTH -> 0
 				Rotatable.Direction.WEST -> 1
 				Rotatable.Direction.NORTH -> 2
