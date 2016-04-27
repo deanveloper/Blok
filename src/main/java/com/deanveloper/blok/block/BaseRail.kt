@@ -1,6 +1,8 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.toNybble
 
 /**
  * Represents a rail
@@ -20,13 +22,12 @@ sealed class BaseRail(
 	) : BaseRail(shape) {
 		override val id = "golden_rail"
 		override val intId = 27
-		override val extraData: Byte
+		override val extraData: Nybble
 			get() {
-				var data: Int = shape.ordinal
+				var data = shape.ordinal.toNybble()
+				data[3] = powered
 
-				if(powered) data = data or 0x8
-
-				return data.toByte();
+				return data
 			}
 
 		override fun clone() = PoweredRail(shape, powered)
@@ -38,13 +39,12 @@ sealed class BaseRail(
 	) : BaseRail(shape) {
 		override val id = "detector_rail"
 		override val intId = 28
-		override val extraData: Byte
+		override val extraData: Nybble
 			get() {
-				var data: Int = shape.ordinal
+				var data = shape.ordinal.toNybble()
+				data[3] = pressed
 
-				if(pressed) data = data or 0x8
-
-				return data.toByte();
+				return data
 			}
 
 		override fun clone() = DetectorRail(shape, pressed)

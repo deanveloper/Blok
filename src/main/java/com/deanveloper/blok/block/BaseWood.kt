@@ -1,6 +1,8 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.toNybble
 
 
 sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
@@ -9,8 +11,8 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 
 		override val id = "planks"
 		override val intId = 5
-		override val extraData: Byte
-			get() = type.ordinal.toByte()
+		override val extraData: Nybble
+			get() = type.ordinal.toNybble()
 	}
 
 	class Sapling(
@@ -21,13 +23,12 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 
 		override val id = "sapling"
 		override val intId = 5
-		override val extraData: Byte
+		override val extraData: Nybble
 			get() {
-				if (ready) {
-					return (type.ordinal or 0x8).toByte()
-				} else {
-					return type.ordinal.toByte()
-				}
+				var data = type.ordinal.toNybble()
+				data[3] = ready
+
+				return data
 			}
 	}
 
