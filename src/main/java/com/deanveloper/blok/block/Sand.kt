@@ -1,7 +1,5 @@
 package com.deanveloper.blok.block
 
-import com.deanveloper.blok.item.ItemData
-
 /**
  * Describes a sand block
  *

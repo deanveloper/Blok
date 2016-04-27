@@ -12,7 +12,7 @@ import com.deanveloper.blok.item.ItemData
  */
 sealed class BaseRail(
 		var shape: RailShape
-) : BlockData, ItemData {
+) : ItemData, BlockData {
 
 	class PoweredRail(
 			shape: RailShape = RailShape.NORTH_SOUTH,

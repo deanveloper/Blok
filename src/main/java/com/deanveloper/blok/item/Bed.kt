@@ -1,19 +1,23 @@
-package com.deanveloper.blok.block
+package com.deanveloper.blok.item
 
-import com.deanveloper.blok.util.Data
+import com.deanveloper.blok.block.Rotatable
+import com.deanveloper.blok.util.DoubleData
 
 /**
- * Represents a singular bed block
+ * Represents a bed item
  *
  * @author Dean B
  */
-class BedBlock(override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH,
-               var occupied: Boolean = false,
-               var isHead: Boolean = false) : BlockData, Rotatable {
+class Bed(override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH,
+          var occupied: Boolean = false,
+          var isHead: Boolean = false
+) : DoubleData(355, 26), Rotatable {
 	override val id = "bed"
-	override val intId = 26
+
 	override val extraData: Byte
 		get() {
+			if(isItem) return 0
+
 			var data: Int = when (rotation) {
 				Rotatable.Direction.SOUTH -> 0
 				Rotatable.Direction.WEST -> 1
@@ -27,6 +31,5 @@ class BedBlock(override var rotation: Rotatable.Direction = Rotatable.Direction.
 			return data.toByte()
 		}
 
-	override fun clone() = BedBlock(rotation, occupied, isHead)
-
+	override fun clone() = Bed()
 }

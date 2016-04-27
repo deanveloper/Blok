@@ -1,7 +1,5 @@
 package com.deanveloper.blok.block
 
-import com.deanveloper.blok.item.ItemData
-
 class Stone(var type: StoneType = Stone.StoneType.NORMAL) : ItemData, BlockData {
 	override val id = "stone"
 	override val intId = 1

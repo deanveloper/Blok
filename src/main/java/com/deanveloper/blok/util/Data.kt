@@ -10,3 +10,18 @@ interface Data : Cloneable {
 
 	override public fun clone(): Data
 }
+
+abstract class DoubleData(
+		val itemIntId: Int,
+		val blockIntId: Int
+) : Data {
+	var isItem: Boolean = true
+	var isBlock: Boolean
+		get() = !isItem
+		set(value) {
+			isItem = !value
+		}
+
+	override final val intId: Int
+		get() = if(isItem) itemIntId else blockIntId
+}

@@ -1,7 +1,5 @@
 package com.deanveloper.blok.block
 
-import com.deanveloper.blok.block.BlockData
-import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.placeholders.Note
 
 class Noteblock(

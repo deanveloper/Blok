@@ -1,19 +1,17 @@
 package com.deanveloper.blok.item
 
-import com.deanveloper.blok.util.Data
+import com.deanveloper.blok.block.BlockData
 import com.deanveloper.blok.util.Magic
+import com.deanveloper.blok.util.Data
 
 /**
- * Data for an item
- *
  * @author Dean B
  */
-open class SimpleItem(
+class SimpleItemBlock(
 		override val id: String
-) : Data {
-	override val isItem = true
-	override val isBlock = false
+) : ItemData, BlockData {
 	override val intId = Magic.stringIdToInt(id)
 	override val extraData: Byte = 0
-	override fun clone() = SimpleItem(id)
+
+	override fun clone(): SimpleItemBlock = SimpleItemBlock(id)
 }

@@ -18,9 +18,9 @@ enum class Material {
 	SAPLING(BaseWood.Sapling()),
 	BEDROCK(),
 	FLOWING_WATER(Fluid(FLOWING_WATER)),
-	STILL_WATER("water", SimpleBlock("water")),
+	STILL_WATER(SimpleBlock("water")),
 	FLOWING_LAVA(Fluid(FLOWING_LAVA)),
-	STILL_LAVA("lava", SimpleBlock("lava")),
+	STILL_LAVA(SimpleBlock("lava")),
 	SAND(Sand()),
 	GRAVEL(),
 	GOLD_ORE(),
@@ -35,7 +35,7 @@ enum class Material {
 	DISPENSER(Dispenser()),
 	SANDSTONE(Sandstone()),
 	NOTE_BLOCK(Noteblock()),
-	BED_BLOCK("bed", BedItem(), BedBlock()),
+	BED_BLOCK("bed", Bed(), BedBlock()),
 	POWERED_RAIL("golden_rail", BaseRail.PoweredRail()),
 	DETECTOR_RAIL(BaseRail.DetectorRail()),
 	STICKY_PISTON(),
@@ -158,33 +158,22 @@ enum class Material {
 	;
 
 	val id: String
-	val item: ItemData?
-		get() = field?.clone() as? ItemData
-	val block: BlockData?
-		get() = field?.clone() as? BlockData
-
-	constructor(id: String? = null, item: ItemData?, block: BlockData?) {
-		this.id = id?.toLowerCase() ?: this.name.toLowerCase()
-		this.item = item
-		this.block = block
-	}
+	val data: Data?
+		get() = field?.clone()
 
 	constructor(data: Data) {
 		this.id = data.id
-		this.item = data as? ItemData
-		this.block = data as? BlockData
+		this.data = data
 	}
 
 	constructor(id: String) {
 		this.id = id
-		this.item = SimpleItem(id)
-		this.block = SimpleBlock(id)
+		this.data = SimpleItemBlock(id)
 	}
 
 	constructor() {
 		this.id = name.toLowerCase()
-		this.item = SimpleItem(id)
-		this.block = SimpleBlock(id)
+		this.data = SimpleItemBlock(id)
 	}
 }
 

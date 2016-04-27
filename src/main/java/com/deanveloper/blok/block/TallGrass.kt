@@ -1,6 +1,5 @@
 package com.deanveloper.blok.block
 
-import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Data
 
 /**
