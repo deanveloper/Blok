@@ -8,7 +8,7 @@ import com.deanveloper.blok.util.Data
  *
  * @author Dean B
  */
-class SandstoneData(var type: SandstoneType = SandstoneData.SandstoneType.NORMAL) : BlockData, ItemData {
+class Sandstone(var type: SandstoneType = Sandstone.SandstoneType.NORMAL) : BlockData, ItemData {
 	override val id = "sandstone"
 	override val intId = 24
 	override val extraData: Byte

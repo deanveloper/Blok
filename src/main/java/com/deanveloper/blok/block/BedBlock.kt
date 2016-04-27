@@ -7,9 +7,9 @@ import com.deanveloper.blok.util.Data
  *
  * @author Dean B
  */
-class BedBlockData(override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH,
-                   var occupied: Boolean = false,
-                   var isHead: Boolean = false) : BlockData, Rotatable {
+class BedBlock(override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH,
+               var occupied: Boolean = false,
+               var isHead: Boolean = false) : BlockData, Rotatable {
 	override val id = "bed"
 	override val intId = 26
 	override val extraData: Byte
@@ -27,6 +27,6 @@ class BedBlockData(override var rotation: Rotatable.Direction = Rotatable.Direct
 			return data.toByte()
 		}
 
-	override fun clone() = BedBlockData(rotation, occupied, isHead)
+	override fun clone() = BedBlock(rotation, occupied, isHead)
 
 }

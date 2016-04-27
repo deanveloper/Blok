@@ -3,8 +3,8 @@ package com.deanveloper.blok.block
 import com.deanveloper.blok.item.ItemData
 
 
-sealed class WoodData(var type: WoodType) : ItemData, BlockData {
-	class PlankData(type: WoodType = WoodType.OAK) : WoodData(type) {
+sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
+	class PlankData(type: WoodType = WoodType.OAK) : BaseWood(type) {
 		override fun clone() = PlankData(type)
 
 		override val id = "planks"
@@ -13,10 +13,10 @@ sealed class WoodData(var type: WoodType) : ItemData, BlockData {
 			get() = type.ordinal.toByte()
 	}
 
-	class SaplingData(
+	class Sapling(
 			type: WoodType = WoodType.OAK,
 			var ready: Boolean = false
-	) : WoodData(type) {
+	) : BaseWood(type) {
 		override fun clone() = PlankData(type)
 
 		override val id = "sapling"
@@ -31,13 +31,13 @@ sealed class WoodData(var type: WoodType) : ItemData, BlockData {
 			}
 	}
 
-	sealed class DoubleWoodData(
+	sealed class BaseDoubleWood(
 			type: WoodType,
 			val id1: String,
 			val id2: String,
 			val intId1: Int,
 			val intId2: Int
-	) : WoodData(type) {
+	) : BaseWood(type) {
 
 		//region Variables/Values
 		val isFirst: Boolean
@@ -55,11 +55,11 @@ sealed class WoodData(var type: WoodType) : ItemData, BlockData {
 			get() = if(isFirst) intId1 else intId2
 		//endregion
 
-		class LogData(
+		class Log(
 				type: WoodType = WoodType.OAK,
 				override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH
-		) : DoubleWoodData(type, "log", "log2", 17, 162), Rotatable {
-			override fun clone() = LogData(type)
+		) : BaseDoubleWood(type, "log", "log2", 17, 162), Rotatable {
+			override fun clone() = Log(type)
 
 			override val extraData: Byte
 				get() {
@@ -74,11 +74,11 @@ sealed class WoodData(var type: WoodType) : ItemData, BlockData {
 				}
 		}
 
-		class LeafData(
+		class Leaves(
 				type: WoodType = WoodType.OAK,
 				var noDecay: Boolean = false,
 				var checkDecay: Boolean = true
-		) : DoubleWoodData(type, "leaves", "leaves2", 17, 162) {
+		) : BaseDoubleWood(type, "leaves", "leaves2", 17, 162) {
 			override val extraData: Byte
 				get() {
 					var data: Int = type.ordinal
@@ -93,7 +93,7 @@ sealed class WoodData(var type: WoodType) : ItemData, BlockData {
 					return data.toByte()
 				}
 
-			override fun clone() = LeafData(type, noDecay, checkDecay);
+			override fun clone() = Leaves(type, noDecay, checkDecay);
 		}
 	}
 

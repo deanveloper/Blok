@@ -8,10 +8,10 @@ import com.deanveloper.blok.util.Data
  *
  * @author Dean B
  */
-class BedItemData() : ItemData {
+class BedItem() : ItemData {
 	override val id = "bed"
 	override val intId = 355
 	override val extraData: Byte = 0
 
-	override fun clone() = BedItemData()
+	override fun clone() = BedItem()
 }

@@ -1,7 +1,6 @@
 package com.deanveloper.blok.item
 
 import com.deanveloper.blok.block.*
-import com.deanveloper.blok.placeholders.Note
 import com.deanveloper.blok.util.Data
 
 /**
@@ -10,38 +9,38 @@ import com.deanveloper.blok.util.Data
  */
 enum class Material {
 
-	AIR(SimpleBlockData("air")),
-	STONE(StoneData()),
+	AIR(SimpleBlock("air")),
+	STONE(Stone()),
 	GRASS(),
-	DIRT(DirtData()),
+	DIRT(Dirt()),
 	COBBLESTONE(),
-	PLANKS(WoodData.PlankData()),
-	SAPLING(WoodData.SaplingData()),
+	PLANKS(BaseWood.PlankData()),
+	SAPLING(BaseWood.Sapling()),
 	BEDROCK(),
-	FLOWING_WATER(FluidData(FLOWING_WATER)),
-	STILL_WATER("water", SimpleBlockData("water")),
-	FLOWING_LAVA(FluidData(FLOWING_LAVA)),
-	STILL_LAVA("lava", SimpleBlockData("lava")),
-	SAND(SandData()),
+	FLOWING_WATER(Fluid(FLOWING_WATER)),
+	STILL_WATER("water", SimpleBlock("water")),
+	FLOWING_LAVA(Fluid(FLOWING_LAVA)),
+	STILL_LAVA("lava", SimpleBlock("lava")),
+	SAND(Sand()),
 	GRAVEL(),
 	GOLD_ORE(),
 	IRON_ORE(),
 	COAL_ORE(),
-	LOG(WoodData.DoubleWoodData.LogData()),
-	LEAVES(WoodData.DoubleWoodData.LeafData()),
-	SPONGE(SpongeData()),
+	LOG(BaseWood.BaseDoubleWood.Log()),
+	LEAVES(BaseWood.BaseDoubleWood.Leaves()),
+	SPONGE(Sponge()),
 	GLASS(),
 	LAPIS_ORE(),
 	LAPIS_BLOCK(),
-	DISPENSER(DispenserData()),
-	SANDSTONE(SandstoneData()),
-	NOTE_BLOCK("noteblock", NoteblockData()),
-	BED_BLOCK("bed", BedItemData(), BedBlockData()),
-	POWERED_RAIL("golden_rail", maxDataVal = 15),
-	DETECTOR_RAIL(POWERED_RAIL),
+	DISPENSER(Dispenser()),
+	SANDSTONE(Sandstone()),
+	NOTE_BLOCK(Noteblock()),
+	BED_BLOCK("bed", BedItem(), BedBlock()),
+	POWERED_RAIL("golden_rail", BaseRail.PoweredRail()),
+	DETECTOR_RAIL(BaseRail.DetectorRail()),
 	STICKY_PISTON(),
 	COBWEB(),
-	TALL_GRASS("tallgrass", maxDataVal = 2),
+	TALL_GRASS("tallgrass", TallGrass()),
 	DEAD_BUSH("deadbush"),
 	PISTON(),
 	PISTON_HEAD(MaterialType.BLOCK),
@@ -170,24 +169,22 @@ enum class Material {
 		this.block = block
 	}
 
-	constructor(id: String? = null, data: Data) {
-		this.id = id?.toLowerCase() ?: this.name.toLowerCase()
+	constructor(data: Data) {
+		this.id = data.id
 		this.item = data as? ItemData
 		this.block = data as? BlockData
 	}
 
-	constructor(data: Data) : this(null, data)
-
 	constructor(id: String) {
 		this.id = id
-		this.item = SimpleItemData(id)
-		this.block = SimpleBlockData(id)
+		this.item = SimpleItem(id)
+		this.block = SimpleBlock(id)
 	}
 
 	constructor() {
 		this.id = name.toLowerCase()
-		this.item = SimpleItemData(id)
-		this.block = SimpleBlockData(id)
+		this.item = SimpleItem(id)
+		this.block = SimpleBlock(id)
 	}
 }
 

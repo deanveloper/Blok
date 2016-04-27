@@ -7,10 +7,10 @@ import com.deanveloper.blok.util.Magic
  *
  * @author Dean B
  */
-open class SimpleItemData(
+open class SimpleItem(
 		override val id: String
 ) : ItemData {
 	override val intId = Magic.stringIdToInt(id)
 	override val extraData: Byte = 0
-	override fun clone() = SimpleItemData(id)
+	override fun clone() = SimpleItem(id)
 }

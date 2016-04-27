@@ -5,11 +5,11 @@ import com.deanveloper.blok.util.Magic
 /**
  * Data for a block
  */
-class SimpleBlockData(
+class SimpleBlock(
 		override val id: String
 ) : BlockData {
 	override val intId = Magic.stringIdToInt(id)
 	override val extraData: Byte = 0
-	override fun clone() = SimpleBlockData(id)
+	override fun clone() = SimpleBlock(id)
 }
 

@@ -8,7 +8,7 @@ import com.deanveloper.blok.util.Data
  *
  * @author Dean B
  */
-class DispenserData(
+class Dispenser(
 		override var rotation: Rotatable.Direction = Rotatable.Direction.NORTH,
 		var powered: Boolean = false
 ) : ItemData, BlockData, Rotatable {
@@ -22,6 +22,6 @@ class DispenserData(
 			return data.toByte()
 		}
 
-	override fun clone() = DispenserData(rotation, powered)
+	override fun clone() = Dispenser(rotation, powered)
 
 }

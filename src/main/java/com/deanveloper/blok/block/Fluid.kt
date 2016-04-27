@@ -5,7 +5,7 @@ import com.deanveloper.blok.item.Material
 /**
  * @author Dean B
  */
-class FluidData(
+class Fluid(
 		val type: Material,
 		var distance: Int = 0,
 		var downward: Boolean = false
@@ -27,6 +27,6 @@ class FluidData(
 			distance
 		} ).toByte()
 
-	override fun clone() = FluidData(type, distance, downward)
+	override fun clone() = Fluid(type, distance, downward)
 
 }
