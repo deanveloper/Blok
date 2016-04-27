@@ -27,8 +27,8 @@ class Bed(override var facing: Rotatable.Direction = Rotatable.Direction.NORTH,
 				Rotatable.Direction.EAST -> 3
 				else -> throw IllegalStateException("Bed rotation cannot be UP or DOWN")
 			}
-			data[2] = occupied
-			data[3] = isHead
+			data[0b0100] = occupied
+			data[0b1000] = isHead
 
 			return data
 		}

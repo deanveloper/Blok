@@ -11,7 +11,7 @@ import com.deanveloper.blok.util.Nybble
  */
 open class SimpleItem(
 		override val id: String
-) : Data {
+) : ItemData {
 	override val intId = Magic.stringIdToInt(id)
 	override val extraData: Nybble = Nybble()
 	override fun clone() = SimpleItem(id)
