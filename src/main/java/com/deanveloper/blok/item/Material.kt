@@ -35,7 +35,7 @@ enum class Material {
 	DISPENSER(Dispenser()),
 	SANDSTONE(Sandstone()),
 	NOTE_BLOCK(Noteblock()),
-	BED_BLOCK("bed", Bed()),
+	BED(Bed()),
 	POWERED_RAIL("golden_rail", BaseRail.PoweredRail()),
 	DETECTOR_RAIL(BaseRail.DetectorRail()),
 	STICKY_PISTON(),
