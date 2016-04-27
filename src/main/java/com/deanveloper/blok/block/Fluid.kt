@@ -1,6 +1,8 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.Material
+import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.toNybble
 
 /**
  * @author Dean B
@@ -22,12 +24,13 @@ class Fluid(
 			else -> throw IllegalStateException("[type] is not flowing water/lava (is $type)")
 		}
 
-	override val extraData: Byte
-		get() = (if (downward) {
-			distance or 0x8
-		} else {
-			distance
-		} ).toByte()
+	override val extraData: Nybble
+		get() {
+			val data = distance.toNybble()
+			data[0b1000] = downward
+
+			return data
+		}
 
 	override fun clone() = Fluid(type, distance, downward)
 

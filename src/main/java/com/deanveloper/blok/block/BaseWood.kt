@@ -41,7 +41,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 	) : BaseWood(type) {
 
 		//region Variables/Values
-		val isFirst: Boolean
+		val isFirstType: Boolean
 			get() = when (type) {
 				WoodType.OAK, WoodType.SPRUCE,
 				WoodType.BIRCH, WoodType.JUNGLE -> true
@@ -50,10 +50,10 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 			}
 
 		final override val id: String
-			get() = if (isFirst) id1 else id2
+			get() = if (isFirstType) id1 else id2
 
 		final override val intId: Int
-			get() = if(isFirst) intId1 else intId2
+			get() = if(isFirstType) intId1 else intId2
 		//endregion
 
 		class Log(
@@ -62,16 +62,13 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 		) : BaseDoubleWood(type, "log", "log2", 17, 162), Rotatable {
 			override fun clone() = Log(type)
 
-			override val extraData: Byte
+			override val extraData: Nybble
 				get() {
-					var data: Int = type.ordinal
-					if (!isFirst) data = type.ordinal - 4
+					var data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
 
-					data = data and (0x1 or 0x2)
+					data[0b1100] = facing.biDirection
 
-					data = data or (facing.biDirection shl 2 and (0x4 or 0x8))
-
-					return data.toByte()
+					return data
 				}
 		}
 
@@ -80,18 +77,13 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 				var noDecay: Boolean = false,
 				var checkDecay: Boolean = true
 		) : BaseDoubleWood(type, "leaves", "leaves2", 17, 162) {
-			override val extraData: Byte
+			override val extraData: Nybble
 				get() {
-					var data: Int = type.ordinal
+					var data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
+					data[0b0100] = noDecay
+					data[0b1000] = checkDecay
 
-					if (!isFirst) {
-						data = type.ordinal - 4
-					}
-
-					if (noDecay) data = data or 0x4
-					if (checkDecay) data = data or 0x8
-
-					return data.toByte()
+					return data
 				}
 
 			override fun clone() = Leaves(type, noDecay, checkDecay);

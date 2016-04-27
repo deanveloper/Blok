@@ -2,6 +2,8 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Data
+import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.toNybble
 
 /**
  * File that stores piston-related classes
@@ -14,26 +16,19 @@ import com.deanveloper.blok.util.Data
  */
 class Piston(
 		override var facing: Rotatable.Direction = Rotatable.Direction.DOWN,
-		var sixSided: Boolean = false,
 		var extended: Boolean = false
 ) : ItemData, BlockData, Rotatable {
 	override val id = "piston"
 	override val intId = 33
-	override val extraData: Byte
+	override val extraData: Nybble
 		get() {
-			var data: Int = 0
-			if(sixSided) {
-				data = data or 0x6
-			} else {
-				data = data or facing.direction
-			}
+			var data = facing.direction.toNybble()
+			data[0b1000] = extended
 
-			if(extended) data = data or 0x8
-
-			return data.toByte()
+			return data
 		}
 
-	override fun clone() = Piston(facing, sixSided, extended)
+	override fun clone() = Piston(facing, extended)
 }
 
 class StickyPiston(
@@ -43,18 +38,12 @@ class StickyPiston(
 ) : ItemData, BlockData, Rotatable {
 	override val id = "sticky_piston"
 	override val intId = 29
-	override val extraData: Byte
+	override val extraData: Nybble
 		get() {
-			var data: Int = 0
-			if(sixSided) {
-				data = data or 0x6
-			} else {
-				data = data or facing.direction
-			}
+			var data = facing.direction.toNybble()
+			data[0b1000] = extended
 
-			if(extended) data = data or 0x8
-
-			return data.toByte()
+			return data
 		}
 
 	override fun clone() = StickyPiston(facing, sixSided, extended)
@@ -69,13 +58,12 @@ class PistonHead(
 ) : BlockData, Rotatable {
 	override val id = "piston_head"
 	override val intId = 34
-	override val extraData: Byte
+	override val extraData: Nybble
 		get() {
-			var data: Int = facing.direction
+			var data = facing.direction.toNybble()
+			data[0b1000] = sticky
 
-			if(sticky) data = data or 0x8
-
-			return data.toByte()
+			return data
 		}
 
 	override fun clone() = PistonHead(facing, sticky)
@@ -90,13 +78,12 @@ class PistonExtension(
 ) : BlockData, Rotatable {
 	override val id = "piston_extension"
 	override val intId = 36
-	override val extraData: Byte
+	override val extraData: Nybble
 		get() {
-			var data: Int = facing.direction
+			var data = facing.direction.toNybble()
+			data[0b1000] = extended
 
-			if(extended) data = data or 0x8
-
-			return data.toByte()
+			return data
 		}
 
 	override fun clone() = PistonExtension(facing, extended)

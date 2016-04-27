@@ -1,6 +1,8 @@
 package com.deanveloper.blok.block
 
-import com.deanveloper.blok.util.Data
+import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.toNybble
 
 /**
  * Represents a dispenser
@@ -13,12 +15,12 @@ class Dispenser(
 ) : ItemData, BlockData, Rotatable {
 	override val id = "dispenser"
 	override val intId = 23
-	override val extraData: Byte
+	override val extraData: Nybble
 		get() {
-			var data: Int = facing.direction
-			if(powered) data = data or 0x8
+			val data = facing.direction.toNybble()
+			data[0b1000] = powered
 
-			return data.toByte()
+			return data
 		}
 
 	override fun clone() = Dispenser(facing, powered)

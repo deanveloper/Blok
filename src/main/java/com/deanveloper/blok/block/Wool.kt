@@ -2,6 +2,8 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Data
+import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.toNybble
 
 /**
  * Represents a Wool block
@@ -11,8 +13,8 @@ import com.deanveloper.blok.util.Data
 class Wool(override var color: DyeColor) : ItemData, BlockData, Colorable {
 	override val id = "wool"
 	override val intId = 35
-	override val extraData: Byte
-		get() = color.ordinal.toByte()
+	override val extraData: Nybble
+		get() = color.ordinal.toNybble()
 
 	override fun clone(): Data {
 		throw UnsupportedOperationException()
