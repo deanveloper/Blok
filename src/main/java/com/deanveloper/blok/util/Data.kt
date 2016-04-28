@@ -11,7 +11,7 @@ interface Data : Cloneable {
 	override public fun clone(): Data
 }
 
-abstract class DoubleData(
+abstract class SeparatedData(
 		val itemIntId: Int,
 		val blockIntId: Int
 ) : Data {
