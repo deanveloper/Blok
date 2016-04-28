@@ -26,7 +26,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 		override val extraData: Nybble
 			get() {
 				var data = type.ordinal.toNybble()
-				data[3] = ready
+				data[0b1000] = ready
 
 				return data
 			}

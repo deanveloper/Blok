@@ -25,7 +25,7 @@ sealed class BaseRail(
 		override val extraData: Nybble
 			get() {
 				var data = shape.ordinal.toNybble()
-				data[3] = powered
+				data[0b1000] = powered
 
 				return data
 			}
@@ -42,7 +42,7 @@ sealed class BaseRail(
 		override val extraData: Nybble
 			get() {
 				var data = shape.ordinal.toNybble()
-				data[3] = pressed
+				data[0b1000] = pressed
 
 				return data
 			}
