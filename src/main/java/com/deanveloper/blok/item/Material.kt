@@ -44,7 +44,7 @@ enum class Material {
 	DEAD_BUSH("deadbush"),
 	PISTON(Piston()),
 	PISTON_HEAD(PistonHead()),
-	WOOL(maxDataVal = 15),
+	WOOL(Wool()),
 	PISTON_EXTENSION(PistonExtension()),
 	DANDELION("yellow_flower"),
 	FLOWER(Flower()),

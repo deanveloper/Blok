@@ -10,22 +10,14 @@ import com.deanveloper.blok.util.toNybble
  *
  * @author Dean B
  */
-class Wool(override var color: DyeColor) : ItemData, BlockData, Colorable {
+class Wool(
+		override var color: Colorable.DyeColor = Colorable.DyeColor.WHITE
+) : ItemData, BlockData, Colorable {
 	override val id = "wool"
 	override val intId = 35
 	override val extraData: Nybble
 		get() = color.ordinal.toNybble()
 
-	override fun clone(): Data {
-		throw UnsupportedOperationException()
-	}
-
-}
-
-interface Colorable {
-	var color: DyeColor
-}
-
-enum class DyeColor {
+	override fun clone() = Wool(color)
 
 }
