@@ -7,7 +7,7 @@ import java.lang.Integer as JInt
  *
  * @author Dean B
  */
-class Nybble(value: Int = 0b0000) : Number() {
+class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
 	private var internal: Int = value and 0b1111
 		set(value) {
 			field = internal and 0b1111

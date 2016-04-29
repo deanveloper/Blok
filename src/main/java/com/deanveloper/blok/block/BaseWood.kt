@@ -6,8 +6,8 @@ import com.deanveloper.blok.util.toNybble
 
 
 sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
-	class PlankData(type: WoodType = WoodType.OAK) : BaseWood(type) {
-		override fun clone() = PlankData(type)
+	class Planks(type: WoodType = WoodType.OAK) : BaseWood(type) {
+		override fun clone() = Planks(type)
 
 		override val id = "planks"
 		override val intId = 5
@@ -19,7 +19,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 			type: WoodType = WoodType.OAK,
 			var ready: Boolean = false
 	) : BaseWood(type) {
-		override fun clone() = PlankData(type)
+		override fun clone() = Planks(type)
 
 		override val id = "sapling"
 		override val intId = 5
@@ -89,7 +89,6 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 			override fun clone() = Leaves(type, noDecay, checkDecay);
 		}
 	}
-
 
 	enum class WoodType {
 		OAK,
