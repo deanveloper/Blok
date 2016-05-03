@@ -1,3 +1,4 @@
+@file:Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
 package com.deanveloper.blok.util
 
 import java.lang.Integer as JInt
@@ -22,26 +23,32 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
 	override fun toByte() = internal.toByte()
 
 	/**
-	 * Sets a bit of our Nybble
+	 * Sets bits of our Nybble to a certain value
 	 *
 	 * @param[mask]     The bits to set
 	 * @param[value]    The value for the bit
 	 */
 	operator fun set(mask: Int, value: Boolean) {
-		if(value) {
+		if (value) {
 			internal or mask
 		} else {
 			internal and mask.inv()
 		}
 	}
 
+	/**
+	 * Sets bits of our Nybble to an integer value
+	 *
+	 * @param[mask]     The bits we are setting
+	 * @param[value]    The number to set the bits to
+	 */
 	operator fun set(mask: Int, value: Int) {
+		@Suppress("NAME_SHADOWING")
 		var value = value shl mask.lsbPos
-		value = value and mask
+		value = value.inv() and mask
 		internal = internal xor value
 	}
 
-	private fun Boolean.toInt() = if (this) 1 else 0
 	private val Int.lsbPos: Int
 		get() = JInt.numberOfTrailingZeros(JInt.lowestOneBit(this))
 }
