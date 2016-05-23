@@ -1,5 +1,6 @@
 package com.deanveloper.blok.item
 
+import com.deanveloper.blok.block.SidewaysRotatable
 import com.deanveloper.blok.block.Rotatable
 import com.deanveloper.blok.util.SeparatedData
 import com.deanveloper.blok.util.Nybble
@@ -9,11 +10,12 @@ import com.deanveloper.blok.util.Nybble
  *
  * @author Dean B
  */
-class Bed(override var facing: Rotatable.Direction = Rotatable.Direction.NORTH,
+class Bed(facing: Rotatable.Direction = Rotatable.Direction.NORTH,
           var occupied: Boolean = false,
           var isHead: Boolean = false
 ) : SeparatedData(355, 26), Rotatable {
-	override val id = "bed"
+    override var facing by SidewaysRotatable(facing)
+    override val id = "bed"
 
 	override val extraData: Nybble
 		get() {

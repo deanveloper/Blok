@@ -14,13 +14,7 @@ class Stairs(
         var upsideDown: Boolean = false
 ) : BlockData, ItemData, Rotatable {
 	override val id = type.id
-	override var facing: Rotatable.Direction = Rotatable.Direction.EAST
-		set(value) {
-			if(value == Rotatable.Direction.DOWN)
-				facing = Rotatable.Direction.UP
-			else
-				facing = value
-		}
+	override var facing: Rotatable.Direction by SidewaysRotatable(facing)
 	override val intId = type.intId
 	override val extraData: Nybble
 		get() {
@@ -29,7 +23,7 @@ class Stairs(
 				Rotatable.Direction.WEST -> 1
 				Rotatable.Direction.SOUTH -> 2
 				Rotatable.Direction.NORTH -> 3
-				else -> throw IllegalStateException("Stairs cannot face UP or DOWN")
+				else -> throw IllegalStateException("Stairs cannot face $facing")
 			}.toNybble()
 
 			data[0b0100] = upsideDown
@@ -41,9 +35,7 @@ class Stairs(
 		this.facing = facing
 	}
 
-	override fun clone(): Data {
-		throw UnsupportedOperationException()
-	}
+	override fun clone() = Stairs(type, facing, upsideDown)
 
 	enum class StairType(val id: String, val intId: Int) {
 		OAK("oak_stairs", 53),

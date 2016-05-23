@@ -14,6 +14,8 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
 			field = internal and 0b1111
 		}
 
+    constructor(byte: Byte) : this(byte.toInt())
+
 	override fun toChar() = internal.toChar()
 	override fun toDouble() = internal.toDouble()
 	override fun toFloat() = internal.toFloat()
