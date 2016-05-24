@@ -9,9 +9,9 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Stairs(
-		var type: StairType,
-		facing: Rotatable.Direction = Rotatable.Direction.EAST,
-        var upsideDown: Boolean = false
+    var type: StairType,
+    facing: Rotatable.Direction = Rotatable.Direction.EAST,
+    var upsideDown: Boolean = false
 ) : BlockData, ItemData, Rotatable {
 	override val id = type.id
 	override var facing: Rotatable.Direction by SidewaysRotatable(facing)

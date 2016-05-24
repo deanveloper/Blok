@@ -10,14 +10,14 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Dispenser(
-		override var facing: Rotatable.Direction = Rotatable.Direction.NORTH,
-		var powered: Boolean = false
-) : ItemData, BlockData, Rotatable {
+    override var facing: Direction = Direction.NORTH,
+    var powered: Boolean = false
+) : ItemData, BlockData, Rotatable<Direction> {
 	override val id = "dispenser"
 	override val intId = 23
 	override val extraData: Nybble
 		get() {
-			val data = facing.direction.toNybble()
+			val data = facing.asInt.toNybble()
 			data[0b1000] = powered
 
 			return data

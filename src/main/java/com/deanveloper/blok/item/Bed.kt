@@ -1,7 +1,7 @@
 package com.deanveloper.blok.item
 
-import com.deanveloper.blok.block.SidewaysRotatable
 import com.deanveloper.blok.block.Rotatable
+import com.deanveloper.blok.block.SidewaysDirection
 import com.deanveloper.blok.util.SeparatedData
 import com.deanveloper.blok.util.Nybble
 
@@ -10,30 +10,29 @@ import com.deanveloper.blok.util.Nybble
  *
  * @author Dean B
  */
-class Bed(facing: Rotatable.Direction = Rotatable.Direction.NORTH,
-          var occupied: Boolean = false,
-          var isHead: Boolean = false
-) : SeparatedData(355, 26), Rotatable {
-    override var facing by SidewaysRotatable(facing)
+class Bed(
+    override var facing: SidewaysDirection = SidewaysDirection.NORTH,
+    var occupied: Boolean = false,
+    var isHead: Boolean = false
+) : SeparatedData(355, 26), Rotatable<SidewaysDirection> {
     override val id = "bed"
 
-	override val extraData: Nybble
-		get() {
-			var data = Nybble()
-			if(isItem) return data
+    override val extraData: Nybble
+        get() {
+            val data = Nybble()
+            if (isItem) return data
 
-			data[0b0011] = when (facing) {
-				Rotatable.Direction.SOUTH -> 0
-				Rotatable.Direction.WEST -> 1
-				Rotatable.Direction.NORTH -> 2
-				Rotatable.Direction.EAST -> 3
-				else -> throw IllegalStateException("Bed rotation cannot be UP or DOWN")
-			}
-			data[0b0100] = occupied
-			data[0b1000] = isHead
+            data[0b0011] = when (facing) {
+                SidewaysDirection.SOUTH -> 0
+                SidewaysDirection.WEST -> 1
+                SidewaysDirection.NORTH -> 2
+                SidewaysDirection.EAST -> 3
+            }
+            data[0b0100] = occupied
+            data[0b1000] = isHead
 
-			return data
-		}
+            return data
+        }
 
-	override fun clone() = Bed()
+    override fun clone() = Bed(facing, occupied, isHead)
 }

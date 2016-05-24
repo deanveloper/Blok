@@ -11,18 +11,16 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Furnace(
-    facing: Rotatable.Direction = Rotatable.Direction.NORTH,
+    override var facing: SidewaysDirection = SidewaysDirection.NORTH,
     var lit: Boolean = false
-) : BlockData, ItemData, Rotatable {
-
-    override var facing by SidewaysRotatable(facing)
+) : BlockData, ItemData, Rotatable<SidewaysDirection> {
 
     override val id: String
         get() = if(lit) "lit_furnace" else "furnace"
     override val intId: Int
         get() = if(lit) 62 else 61
     override val extraData: Nybble
-        get() = facing.direction.toNybble()
+        get() = facing.asInt.toNybble()
 
     override fun clone() = Furnace(facing, lit)
 

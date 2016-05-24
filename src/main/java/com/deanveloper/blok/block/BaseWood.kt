@@ -25,7 +25,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 		override val intId = 5
 		override val extraData: Nybble
 			get() {
-				var data = type.ordinal.toNybble()
+				val data = type.ordinal.toNybble()
 				data[0b1000] = ready
 
 				return data
@@ -58,15 +58,15 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 
 		class Log(
 				type: WoodType = WoodType.OAK,
-				override var facing: Rotatable.Direction = Rotatable.Direction.NORTH
-		) : BaseDoubleWood(type, "log", "log2", 17, 162), Rotatable {
+				override var facing: BiDirection = BiDirection.NORTH_SOUTH
+		) : BaseDoubleWood(type, "log", "log2", 17, 162), Rotatable<BiDirection> {
 			override fun clone() = Log(type)
 
 			override val extraData: Nybble
 				get() {
-					var data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
+					val data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
 
-					data[0b1100] = facing.biDirection
+					data[0b1100] = facing.asInt
 
 					return data
 				}
@@ -79,7 +79,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 		) : BaseDoubleWood(type, "leaves", "leaves2", 17, 162) {
 			override val extraData: Nybble
 				get() {
-					var data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
+					val data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
 					data[0b0100] = noDecay
 					data[0b1000] = checkDecay
 

@@ -15,14 +15,14 @@ import com.deanveloper.blok.util.toNybble
  * Represents a Piston
  */
 class Piston(
-		override var facing: Rotatable.Direction = Rotatable.Direction.DOWN,
-		var extended: Boolean = false
-) : ItemData, BlockData, Rotatable {
+    override var facing: Direction = Direction.DOWN,
+    var extended: Boolean = false
+) : ItemData, BlockData, Rotatable<Direction> {
 	override val id = "piston"
 	override val intId = 33
 	override val extraData: Nybble
 		get() {
-			var data = facing.direction.toNybble()
+			val data = facing.asInt.toNybble()
 			data[0b1000] = extended
 
 			return data
@@ -32,15 +32,15 @@ class Piston(
 }
 
 class StickyPiston(
-		override var facing: Rotatable.Direction = Rotatable.Direction.DOWN,
-		var sixSided: Boolean = false,
-		var extended: Boolean = false
-) : ItemData, BlockData, Rotatable {
+    override var facing: Direction = Direction.DOWN,
+    var sixSided: Boolean = false,
+    var extended: Boolean = false
+) : ItemData, BlockData, Rotatable<Direction> {
 	override val id = "sticky_piston"
 	override val intId = 29
 	override val extraData: Nybble
 		get() {
-			var data = facing.direction.toNybble()
+			val data = facing.asInt.toNybble()
 			data[0b1000] = extended
 
 			return data
@@ -53,14 +53,14 @@ class StickyPiston(
  * Represents a Piston Head
  */
 class PistonHead(
-		override var facing: Rotatable.Direction = Rotatable.Direction.DOWN,
-		var sticky: Boolean = false
-) : BlockData, Rotatable {
+    override var facing: Direction = Direction.DOWN,
+    var sticky: Boolean = false
+) : BlockData, Rotatable<Direction> {
 	override val id = "piston_head"
 	override val intId = 34
 	override val extraData: Nybble
 		get() {
-			var data = facing.direction.toNybble()
+			val data = facing.asInt.toNybble()
 			data[0b1000] = sticky
 
 			return data
@@ -73,14 +73,14 @@ class PistonHead(
  * Represents a block that is being pushed by a Piston
  */
 class PistonExtension(
-		override var facing: Rotatable.Direction = Rotatable.Direction.DOWN,
-		var extended: Boolean = false
-) : BlockData, Rotatable {
+    override var facing: Direction = Direction.DOWN,
+    var extended: Boolean = false
+) : BlockData, Rotatable<Direction> {
 	override val id = "piston_extension"
 	override val intId = 36
 	override val extraData: Nybble
 		get() {
-			var data = facing.direction.toNybble()
+			val data = facing.asInt.toNybble()
 			data[0b1000] = extended
 
 			return data

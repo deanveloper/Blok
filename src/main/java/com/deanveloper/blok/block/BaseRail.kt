@@ -10,7 +10,7 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  *
  * @property[rotation]  The direction the rail is going
- * @property[rising]    The direction the rail is rising, [Rotatable.Direction.DOWN] if none
+ * @property[rising]    The direction the rail is rising, [Rotatable.DirectionRepresentation.DOWN] if none
  */
 sealed class BaseRail(
 		var shape: RailShape

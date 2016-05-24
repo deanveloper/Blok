@@ -6,43 +6,57 @@ import kotlin.reflect.KProperty
 /**
  * @author Dean B
  */
-interface Rotatable {
-	var facing: Direction
-
-	enum class Direction(val direction: Int, val biDirection: Int) {
-		DOWN(0, 0),
-		UP(1, 0),
-		NORTH(2, 2),
-		SOUTH(3, 2),
-		WEST(4, 1),
-		EAST(5, 1);
-	}
+interface Rotatable<T : DirectionRepresentation> {
+	var facing: T
 }
 
-class SidewaysRotatable(init: Rotatable.Direction) : VarDelegate<Rotatable.Direction> {
-    lateinit var field: Rotatable.Direction
+interface DirectionRepresentation {
+    val asInt: Int
+}
 
-    init {
-        when(init) {
-            Rotatable.Direction.DOWN,
-            Rotatable.Direction.UP -> throw IllegalArgumentException("Sideways Rotatable materials cannot face $init")
+enum class Direction : DirectionRepresentation {
+    DOWN,
+    UP,
+    NORTH,
+    SOUTH,
+    WEST,
+    EAST;
 
-            else -> field = init
-        }
-    }
+    override val asInt = ordinal
+}
 
-    override fun setValue(thisRef: Any?, property: KProperty<*>, value: Rotatable.Direction) {
-        when(value) {
-            Rotatable.Direction.DOWN,
-            Rotatable.Direction.UP -> throw IllegalArgumentException("Sideways Rotatable materials cannot face $value")
+enum class BiDirection : DirectionRepresentation {
+    UP_DOWN,
+    EAST_WEST,
+    NORTH_SOUTH;
 
-            else -> field = value
-        }
-        field = value
-    }
+    override val asInt = ordinal
+}
 
-    override fun getValue(thisRef: Any?, property: KProperty<*>): Rotatable.Direction {
-        return field
-    }
+enum class SidewaysDirection(override val asInt: Int) : DirectionRepresentation {
+    NORTH(2),
+    SOUTH(3),
+    WEST(4),
+    EAST(5);
+}
 
+enum class ManyDirection : DirectionRepresentation {
+    SOUTH,
+    SOUTH_SOUTH_WEST,
+    SOUTH_WEST,
+    WEST_SOUTH_WEST,
+    WEST,
+    WEST_NORTH_WEST,
+    NORTH_WEST,
+    NORTH_NORTH_WEST,
+    NORTH,
+    NORTH_NORTH_EAST,
+    NORTH_EAST,
+    EAST_NORTH_EAST,
+    EAST,
+    EAST_SOUTH_EAST,
+    SOUTH_EAST,
+    SOUTH_SOUTH_EAST;
+
+    override val asInt = ordinal
 }
