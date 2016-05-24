@@ -1,8 +1,5 @@
 package com.deanveloper.blok.block
 
-import com.deanveloper.blok.util.VarDelegate
-import kotlin.reflect.KProperty
-
 /**
  * @author Dean B
  */

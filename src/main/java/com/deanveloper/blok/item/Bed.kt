@@ -2,8 +2,8 @@ package com.deanveloper.blok.item
 
 import com.deanveloper.blok.block.Rotatable
 import com.deanveloper.blok.block.SidewaysDirection
-import com.deanveloper.blok.util.SeparatedData
 import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.SeparatedData
 
 /**
  * Represents a bed item
