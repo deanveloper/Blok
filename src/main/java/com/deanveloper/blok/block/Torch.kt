@@ -7,20 +7,20 @@ import com.deanveloper.blok.util.Nybble
  * @author Dean B
  */
 class Torch(
-		facing: Rotatable.Direction = Rotatable.Direction.UP
+    facing: Rotatable.Direction = Rotatable.Direction.UP
 ) : ItemData, BlockData, Rotatable {
-	override val id = "torch"
-	override val intId = 50
+    override val id = "torch"
+    override val intId = 50
 
-	override var facing = facing
-		set(value) {
-			if(value == Rotatable.Direction.DOWN) field = Rotatable.Direction.UP
-			field = value
-		}
+    override var facing = facing
+        set(value) {
+            if (value == Rotatable.Direction.DOWN) field = Rotatable.Direction.UP
+            field = value
+        }
 
-	override val extraData: Nybble
-		get() = (6 - facing.direction).toNybble()
+    override val extraData: Nybble
+        get() = (6 - facing.direction).toNybble()
 
-	override fun clone() = Torch(facing)
+    override fun clone() = Torch(facing)
 
 }

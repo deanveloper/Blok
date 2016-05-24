@@ -15,9 +15,9 @@ class Furnace(
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
 
     override val id: String
-        get() = if(lit) "lit_furnace" else "furnace"
+        get() = if (lit) "lit_furnace" else "furnace"
     override val intId: Int
-        get() = if(lit) 62 else 61
+        get() = if (lit) 62 else 61
     override val extraData: Nybble
         get() = facing.asInt.toNybble()
 

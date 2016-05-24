@@ -10,17 +10,17 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Sandstone(var type: SandstoneType = Sandstone.SandstoneType.NORMAL) : BlockData, ItemData {
-	override val id = "sandstone"
-	override val intId = 24
-	override val extraData: Nybble
-		get() = type.ordinal.toNybble()
+    override val id = "sandstone"
+    override val intId = 24
+    override val extraData: Nybble
+        get() = type.ordinal.toNybble()
 
-	override fun clone() = Sandstone(type)
+    override fun clone() = Sandstone(type)
 
 
-	enum class SandstoneType {
-		NORMAL,
-		CHISELED,
-		SMOOTH
-	}
+    enum class SandstoneType {
+        NORMAL,
+        CHISELED,
+        SMOOTH
+    }
 }

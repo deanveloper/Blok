@@ -13,16 +13,16 @@ class Dispenser(
     override var facing: Direction = Direction.NORTH,
     var powered: Boolean = false
 ) : ItemData, BlockData, Rotatable<Direction> {
-	override val id = "dispenser"
-	override val intId = 23
-	override val extraData: Nybble
-		get() {
-			val data = facing.asInt.toNybble()
-			data[0b1000] = powered
+    override val id = "dispenser"
+    override val intId = 23
+    override val extraData: Nybble
+        get() {
+            val data = facing.asInt.toNybble()
+            data[0b1000] = powered
 
-			return data
-		}
+            return data
+        }
 
-	override fun clone() = Dispenser(facing, powered)
+    override fun clone() = Dispenser(facing, powered)
 
 }

@@ -29,7 +29,7 @@ class Sign(
                 }
 
                 SignType.WALL -> {
-                    if(facing.name in SidewaysDirection.values().map { it.name }) {
+                    if (facing.name in SidewaysDirection.values().map { it.name }) {
                         return SidewaysDirection.valueOf(facing.name).asInt.toNybble()
                     } else {
                         return SidewaysDirection.NORTH.asInt.toNybble()

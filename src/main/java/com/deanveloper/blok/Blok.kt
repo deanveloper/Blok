@@ -12,5 +12,5 @@ import java.util.*
 val rand = Random()
 
 var nextEntityId: Int = 0
-	get() = ++field
-	private set;
+    get() = ++field
+    private set;

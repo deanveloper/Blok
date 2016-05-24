@@ -1,15 +1,15 @@
 package com.deanveloper.blok.entity
 
 class EntityAttribute {
-	init {
-		TODO()
-	}
+    init {
+        TODO()
+    }
 
-	enum class EntityAttributeType {
-		;
+    enum class EntityAttributeType {
+        ;
 
-		init {
-			TODO()
-		}
-	}
+        init {
+            TODO()
+        }
+    }
 }

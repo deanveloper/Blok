@@ -4,7 +4,7 @@ package com.deanveloper.blok.block
  * @author Dean B
  */
 interface Rotatable<T : DirectionRepresentation> {
-	var facing: T
+    var facing: T
 }
 
 interface DirectionRepresentation {

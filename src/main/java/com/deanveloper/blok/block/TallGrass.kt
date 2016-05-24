@@ -8,18 +8,18 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class TallGrass(
-		var type: GrassType = TallGrass.GrassType.SHRUB
+    var type: GrassType = TallGrass.GrassType.SHRUB
 ) : ItemData, BlockData {
-	override val id = "tallgrass"
-	override val intId = 31
-	override val extraData: Nybble
-		get() = type.ordinal.toNybble()
+    override val id = "tallgrass"
+    override val intId = 31
+    override val extraData: Nybble
+        get() = type.ordinal.toNybble()
 
-	override fun clone() = TallGrass(type)
+    override fun clone() = TallGrass(type)
 
-	enum class GrassType {
-		SHRUB,
-		TALL_GRASS,
-		FERN
-	}
+    enum class GrassType {
+        SHRUB,
+        TALL_GRASS,
+        FERN
+    }
 }

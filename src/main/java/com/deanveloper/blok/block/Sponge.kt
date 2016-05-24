@@ -10,10 +10,10 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Sponge(var wet: Boolean = false) : ItemData, BlockData {
-	override val id = "sponge"
-	override val intId = 19
-	override val extraData: Nybble
-		get() = (if(wet) 1 else 0).toNybble()
+    override val id = "sponge"
+    override val intId = 19
+    override val extraData: Nybble
+        get() = (if (wet) 1 else 0).toNybble()
 
-	override fun clone() = Sponge(wet)
+    override fun clone() = Sponge(wet)
 }

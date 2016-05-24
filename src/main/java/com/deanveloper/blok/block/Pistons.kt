@@ -17,17 +17,17 @@ class Piston(
     override var facing: Direction = Direction.DOWN,
     var extended: Boolean = false
 ) : ItemData, BlockData, Rotatable<Direction> {
-	override val id = "piston"
-	override val intId = 33
-	override val extraData: Nybble
-		get() {
-			val data = facing.asInt.toNybble()
-			data[0b1000] = extended
+    override val id = "piston"
+    override val intId = 33
+    override val extraData: Nybble
+        get() {
+            val data = facing.asInt.toNybble()
+            data[0b1000] = extended
 
-			return data
-		}
+            return data
+        }
 
-	override fun clone() = Piston(facing, extended)
+    override fun clone() = Piston(facing, extended)
 }
 
 class StickyPiston(
@@ -35,17 +35,17 @@ class StickyPiston(
     var sixSided: Boolean = false,
     var extended: Boolean = false
 ) : ItemData, BlockData, Rotatable<Direction> {
-	override val id = "sticky_piston"
-	override val intId = 29
-	override val extraData: Nybble
-		get() {
-			val data = facing.asInt.toNybble()
-			data[0b1000] = extended
+    override val id = "sticky_piston"
+    override val intId = 29
+    override val extraData: Nybble
+        get() {
+            val data = facing.asInt.toNybble()
+            data[0b1000] = extended
 
-			return data
-		}
+            return data
+        }
 
-	override fun clone() = StickyPiston(facing, sixSided, extended)
+    override fun clone() = StickyPiston(facing, sixSided, extended)
 }
 
 /**
@@ -55,17 +55,17 @@ class PistonHead(
     override var facing: Direction = Direction.DOWN,
     var sticky: Boolean = false
 ) : BlockData, Rotatable<Direction> {
-	override val id = "piston_head"
-	override val intId = 34
-	override val extraData: Nybble
-		get() {
-			val data = facing.asInt.toNybble()
-			data[0b1000] = sticky
+    override val id = "piston_head"
+    override val intId = 34
+    override val extraData: Nybble
+        get() {
+            val data = facing.asInt.toNybble()
+            data[0b1000] = sticky
 
-			return data
-		}
+            return data
+        }
 
-	override fun clone() = PistonHead(facing, sticky)
+    override fun clone() = PistonHead(facing, sticky)
 }
 
 /**
@@ -75,15 +75,15 @@ class PistonExtension(
     override var facing: Direction = Direction.DOWN,
     var extended: Boolean = false
 ) : BlockData, Rotatable<Direction> {
-	override val id = "piston_extension"
-	override val intId = 36
-	override val extraData: Nybble
-		get() {
-			val data = facing.asInt.toNybble()
-			data[0b1000] = extended
+    override val id = "piston_extension"
+    override val intId = 36
+    override val extraData: Nybble
+        get() {
+            val data = facing.asInt.toNybble()
+            data[0b1000] = extended
 
-			return data
-		}
+            return data
+        }
 
-	override fun clone() = PistonExtension(facing, extended)
+    override fun clone() = PistonExtension(facing, extended)
 }

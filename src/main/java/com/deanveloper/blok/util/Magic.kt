@@ -5,7 +5,7 @@ package com.deanveloper.blok.util
  */
 @Deprecated("Magic Values")
 object Magic {
-	@JvmStatic fun stringIdToInt(id: String): Int {
-		TODO()
-	}
+    @JvmStatic fun stringIdToInt(id: String): Int {
+        TODO()
+    }
 }

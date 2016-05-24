@@ -1,15 +1,15 @@
 package com.deanveloper.blok.placeholders
 
 class PotionEffect {
-	init {
-		TODO()
-	}
+    init {
+        TODO()
+    }
 }
 
 enum class PotionType {
-	;
+    ;
 
-	init {
-		TODO()
-	}
+    init {
+        TODO()
+    }
 }

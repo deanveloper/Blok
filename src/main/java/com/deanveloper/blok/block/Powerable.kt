@@ -6,5 +6,5 @@ package com.deanveloper.blok.block
  * @author Dean B
  */
 interface Powerable {
-	var powered: Boolean
+    var powered: Boolean
 }
