@@ -57,3 +57,31 @@ enum class ManyDirection : DirectionRepresentation {
 
     override val asInt = ordinal
 }
+
+interface RailDirection : DirectionRepresentation
+
+enum class RigidRailDirection : RailDirection {
+    NORTH_SOUTH,
+    EAST_WEST,
+    ASCENDING_NORTH,
+    ASCENDING_SOUTH,
+    ASCENDING_EAST,
+    ASCENDING_WEST;
+
+    override val asInt = ordinal
+}
+
+enum class BendableRailDirection : RailDirection {
+    NORTH_SOUTH,
+    EAST_WEST,
+    ASCENDING_EAST,
+    ASCENDING_WEST,
+    ASCENDING_NORTH,
+    ASCENDING_SOUTH,
+    SOUTH_EAST,
+    SOUTH_WEST,
+    NORTH_WEST,
+    NORTH_EAST;
+
+    override val asInt = ordinal
+}

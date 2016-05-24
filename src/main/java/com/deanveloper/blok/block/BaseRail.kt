@@ -1,6 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.Data
 import com.deanveloper.blok.util.Nybble
 import com.deanveloper.blok.util.toNybble
 
@@ -12,50 +13,53 @@ import com.deanveloper.blok.util.toNybble
  * @property[rotation]  The direction the rail is going
  * @property[rising]    The direction the rail is rising, [Rotatable.DirectionRepresentation.DOWN] if none
  */
-sealed class BaseRail(
-    var shape: RailShape
-) : ItemData, BlockData {
+sealed class BaseRail<T : RailDirection>(
+    override var facing: T
+) : ItemData, BlockData, Rotatable<T> {
 
     class PoweredRail(
-        shape: RailShape = RailShape.NORTH_SOUTH,
+        facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
         var powered: Boolean = false
-    ) : BaseRail(shape) {
+    ) : BaseRail<RigidRailDirection>(facing) {
         override val id = "golden_rail"
         override val intId = 27
         override val extraData: Nybble
             get() {
-                var data = shape.ordinal.toNybble()
+                var data = facing.asInt.toNybble()
                 data[0b1000] = powered
 
                 return data
             }
 
-        override fun clone() = PoweredRail(shape, powered)
+        override fun clone() = PoweredRail(facing, powered)
     }
 
     class DetectorRail(
-        shape: RailShape = RailShape.NORTH_SOUTH,
+        facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
         var pressed: Boolean = false
-    ) : BaseRail(shape) {
+    ) : BaseRail<RigidRailDirection>(facing) {
         override val id = "detector_rail"
         override val intId = 28
         override val extraData: Nybble
             get() {
-                var data = shape.ordinal.toNybble()
+                val data = facing.asInt.toNybble()
                 data[0b1000] = pressed
 
                 return data
             }
 
-        override fun clone() = DetectorRail(shape, pressed)
+        override fun clone() = DetectorRail(facing, pressed)
     }
 
-    enum class RailShape {
-        NORTH_SOUTH,
-        EAST_WEST,
-        ASCENDING_NORTH,
-        ASCENDING_SOUTH,
-        ASCENDING_EAST,
-        ASCENDING_WEST
+    class Rail(
+        facing: BendableRailDirection = BendableRailDirection.NORTH_SOUTH
+    ) : BaseRail<BendableRailDirection>(facing) {
+        override val id = "rail"
+        override val intId = 66
+        override val extraData: Nybble
+            get() = facing.asInt.toNybble()
+
+        override fun clone() = Rail(facing)
+
     }
 }

@@ -9,22 +9,14 @@ import com.deanveloper.blok.util.toNybble
  */
 class Stairs(
     var type: StairType,
-    facing: Rotatable.Direction = Rotatable.Direction.EAST,
+    override var facing: SidewaysDirection = SidewaysDirection.EAST,
     var upsideDown: Boolean = false
-) : BlockData, ItemData, Rotatable {
+) : BlockData, ItemData, Rotatable<SidewaysDirection> {
     override val id = type.id
-    override var facing: Rotatable.Direction by SidewaysRotatable(facing)
     override val intId = type.intId
     override val extraData: Nybble
         get() {
-            var data = when (facing) {
-                Rotatable.Direction.EAST -> 0
-                Rotatable.Direction.WEST -> 1
-                Rotatable.Direction.SOUTH -> 2
-                Rotatable.Direction.NORTH -> 3
-                else -> throw IllegalStateException("Stairs cannot face $facing")
-            }.toNybble()
-
+            val data: Nybble = facing.asInt.toNybble()
             data[0b0100] = upsideDown
 
             return data

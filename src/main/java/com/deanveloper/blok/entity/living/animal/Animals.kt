@@ -7,7 +7,7 @@ import com.deanveloper.blok.entity.living.LivingEntity
  *
  * @author Dean B
  */
-interface Animal : LivingEntity, EntityAttributable
+interface Animal : LivingEntity
 
 interface Chicken : Animal
 
