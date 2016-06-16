@@ -12,7 +12,7 @@ import com.deanveloper.blok.util.toNybble
 class Sponge(var wet: Boolean = false) : ItemData, BlockData {
     override val id = "sponge"
     override val intId = 19
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = (if (wet) 1 else 0).toNybble()
 
     override fun clone() = Sponge(wet)

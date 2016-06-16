@@ -15,7 +15,7 @@ class Ladder(
 ) : ItemData, BlockData, Rotatable<SidewaysDirection> {
     override val id = "ladder"
     override val intId = 65
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = facing.asInt.toNybble()
 
     override fun clone() = Ladder(facing)

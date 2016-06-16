@@ -11,7 +11,7 @@ class SimpleBlock(
     override val id: String
 ) : BlockData {
     override val intId = Magic.stringIdToInt(id)
-    override val extraData: Nybble = 0.toNybble()
+    override val rawData: Nybble = 0.toNybble()
     override fun clone() = SimpleBlock(id)
 }
 

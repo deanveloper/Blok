@@ -14,7 +14,7 @@ class Chest(
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
     override val id = "chest"
     override val intId = 54
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = facing.asInt.toNybble()
 
     override fun clone() = Chest(facing)

@@ -37,7 +37,7 @@ class Slab(
             else -> throw IllegalStateException("String id is not valid! ($id)")
         }
 
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             var data = Nybble()
             data[0b0111] = type.data

@@ -15,7 +15,7 @@ class Dispenser(
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "dispenser"
     override val intId = 23
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = powered

@@ -1,9 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Data
-import com.deanveloper.blok.util.Nybble
-import com.deanveloper.blok.util.toNybble
+import com.deanveloper.blok.util.*
 
 /**
  * Represents a rail
@@ -14,39 +12,35 @@ import com.deanveloper.blok.util.toNybble
  * @property[rising]    The direction the rail is rising, [Rotatable.DirectionRepresentation.DOWN] if none
  */
 sealed class BaseRail<T : RailDirection>(
-    override var facing: T
+    facing: T
 ) : ItemData, BlockData, Rotatable<T> {
 
     class PoweredRail(
         facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
-        var powered: Boolean = false
+        powered: Boolean = false
     ) : BaseRail<RigidRailDirection>(facing) {
         override val id = "golden_rail"
         override val intId = 27
-        override val extraData: Nybble
-            get() {
-                var data = facing.asInt.toNybble()
-                data[0b1000] = powered
+        override var rawData = Nybble()
 
-                return data
-            }
+        var powered: Boolean by NybbleStorage(0b1000, powered, BOOLEAN_MAPPER)
+
+        override var facing: RigidRailDirection by NybbleStorage(0b0111, facing) { RigidRailDirection.values()[it] }
 
         override fun clone() = PoweredRail(facing, powered)
     }
 
     class DetectorRail(
         facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
-        var pressed: Boolean = false
+        pressed: Boolean = false
     ) : BaseRail<RigidRailDirection>(facing) {
         override val id = "detector_rail"
         override val intId = 28
-        override val extraData: Nybble
-            get() {
-                val data = facing.asInt.toNybble()
-                data[0b1000] = pressed
+        override var rawData = Nybble()
 
-                return data
-            }
+        var pressed: Boolean by NybbleStorage(0b1000, pressed, BOOLEAN_MAPPER)
+
+        override var facing: RigidRailDirection by NybbleStorage(0b0111, facing) { RigidRailDirection.values()[it] }
 
         override fun clone() = DetectorRail(facing, pressed)
     }
@@ -56,8 +50,9 @@ sealed class BaseRail<T : RailDirection>(
     ) : BaseRail<BendableRailDirection>(facing) {
         override val id = "rail"
         override val intId = 66
-        override val extraData: Nybble
-            get() = facing.asInt.toNybble()
+        override var rawData = Nybble()
+
+        override var facing by NybbleStorage(0b1111, facing) { BendableRailDirection.values()[it] }
 
         override fun clone() = Rail(facing)
 

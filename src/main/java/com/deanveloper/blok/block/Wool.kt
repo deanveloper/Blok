@@ -14,7 +14,7 @@ class Wool(
 ) : ItemData, BlockData, Colorable {
     override val id = "wool"
     override val intId = 35
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = color.ordinal.toNybble()
 
     override fun clone() = Wool(color)

@@ -10,7 +10,7 @@ class Noteblock(
 ) : ItemData, BlockData {
     override val id = "noteblock"
     override val intId = 25
-    override val extraData = 0.toNybble()
+    override val rawData = 0.toNybble()
 
     override fun clone() = Noteblock(powered, note)
 }

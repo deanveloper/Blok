@@ -19,7 +19,7 @@ class Torch(
             field = value
         }
 
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = (6 - facing.asInt).toNybble()
 
     override fun clone() = Torch(facing)

@@ -24,7 +24,7 @@ class Fluid(
             else -> throw IllegalStateException("[type] is not flowing water/lava (is $type)")
         }
 
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data = distance.toNybble()
             data[0b1000] = downward

@@ -15,7 +15,7 @@ class Lever(
 ) : ItemData, BlockData, BinaryPowerSource, Rotatable<Direction> {
     override val id = "lever"
     override val intId = 69
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = output

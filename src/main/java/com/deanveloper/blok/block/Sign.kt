@@ -17,7 +17,7 @@ class Sign(
         get() = signType.id
     override val intId: Int
         get() = signType.intId
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             when (signType) {
                 SignType.ITEM -> {

@@ -19,7 +19,7 @@ class Piston(
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "piston"
     override val intId = 33
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = extended
@@ -37,7 +37,7 @@ class StickyPiston(
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "sticky_piston"
     override val intId = 29
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = extended
@@ -57,7 +57,7 @@ class PistonHead(
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_head"
     override val intId = 34
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = sticky
@@ -77,7 +77,7 @@ class PistonExtension(
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_extension"
     override val intId = 36
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = extended

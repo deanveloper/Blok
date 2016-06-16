@@ -7,7 +7,7 @@ import com.deanveloper.blok.util.toNybble
 class Stone(var type: StoneType = Stone.StoneType.NORMAL) : ItemData, BlockData {
     override val id = "stone"
     override val intId = 1
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = type.ordinal.toNybble()
 
     override fun clone() = Stone(type);

@@ -10,7 +10,7 @@ import com.deanveloper.blok.util.Nybble
 class Farmland(var wetness: Byte = 0) : BlockData {
     override val id = "farmland"
     override val intId = 60
-    override val extraData = Nybble(wetness)
+    override val rawData = Nybble(wetness)
 
     override fun clone() = Farmland(wetness)
 }

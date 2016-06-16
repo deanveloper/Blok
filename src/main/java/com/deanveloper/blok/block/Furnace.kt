@@ -18,7 +18,7 @@ class Furnace(
         get() = if (lit) "lit_furnace" else "furnace"
     override val intId: Int
         get() = if (lit) 62 else 61
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = facing.asInt.toNybble()
 
     override fun clone() = Furnace(facing, lit)

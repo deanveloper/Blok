@@ -12,7 +12,7 @@ class TallGrass(
 ) : ItemData, BlockData {
     override val id = "tallgrass"
     override val intId = 31
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() = type.ordinal.toNybble()
 
     override fun clone() = TallGrass(type)

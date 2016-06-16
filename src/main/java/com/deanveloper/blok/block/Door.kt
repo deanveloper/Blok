@@ -22,7 +22,7 @@ class Door @JvmOverloads constructor(
         get() = type.id
     override val intId: Int
         get() = if(isItem) type.intItemId else type.intBlockId
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             if(isItem) {
                 return 0.toNybble()

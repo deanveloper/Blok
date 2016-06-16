@@ -14,7 +14,7 @@ class Stairs(
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
     override val id = type.id
     override val intId = type.intId
-    override val extraData: Nybble
+    override val rawData: Nybble
         get() {
             val data: Nybble = facing.asInt.toNybble()
             data[0b0100] = upsideDown

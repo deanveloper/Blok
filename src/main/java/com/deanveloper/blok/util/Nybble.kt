@@ -52,8 +52,15 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
         internal = internal xor value
     }
 
-    private val Int.lsbPos: Int
-        get() = JInt.numberOfTrailingZeros(JInt.lowestOneBit(this))
+    operator fun get(mask: Int): Int {
+        return internal shr mask.lsbPos
+    }
 }
 
 fun Int.toNybble() = Nybble(this)
+
+val Int.lsbPos: Int
+    get() = JInt.numberOfTrailingZeros(JInt.lowestOneBit(this))
+
+val Int.msbPos: Int
+    get() = JInt.numberOfTrailingZeros(JInt.highestOneBit(this))

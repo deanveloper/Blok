@@ -12,6 +12,6 @@ open class SimpleItem(
     override val id: String
 ) : ItemData {
     override val intId = Magic.stringIdToInt(id)
-    override val extraData: Nybble = Nybble()
+    override var rawData = Nybble()
     override fun clone() = SimpleItem(id)
 }

@@ -8,10 +8,10 @@ import com.deanveloper.blok.util.Nybble
  * @author Dean B
  */
 class SimpleItemBlock(
-    override val id: String
+    override val id: String,
+    override val intId: Int = Magic.stringIdToInt(id)
 ) : ItemData, BlockData {
-    override val intId = Magic.stringIdToInt(id)
-    override val extraData: Nybble = Nybble()
+    override var rawData = Nybble()
 
     override fun clone(): SimpleItemBlock = SimpleItemBlock(id)
 }

@@ -8,7 +8,6 @@ import com.deanveloper.blok.util.Data
  * @author Dean B
  */
 enum class Material {
-
     AIR(SimpleBlock("air")),
     STONE(Stone()),
     GRASS(),

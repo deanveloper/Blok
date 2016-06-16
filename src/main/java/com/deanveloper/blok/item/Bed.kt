@@ -2,6 +2,8 @@ package com.deanveloper.blok.item
 
 import com.deanveloper.blok.block.Rotatable
 import com.deanveloper.blok.block.SidewaysDirection
+import com.deanveloper.blok.util.BOOLEAN_MAPPER
+import com.deanveloper.blok.util.NybbleStorage
 import com.deanveloper.blok.util.Nybble
 import com.deanveloper.blok.util.SeparatedData
 
@@ -11,28 +13,26 @@ import com.deanveloper.blok.util.SeparatedData
  * @author Dean B
  */
 class Bed(
-    override var facing: SidewaysDirection = SidewaysDirection.NORTH,
-    var occupied: Boolean = false,
-    var isHead: Boolean = false
+    facing: SidewaysDirection = SidewaysDirection.NORTH,
+    occupied: Boolean = false,
+    isHead: Boolean = false
 ) : SeparatedData(355, 26), Rotatable<SidewaysDirection> {
     override val id = "bed"
+    override var rawData = Nybble()
 
-    override val extraData: Nybble
-        get() {
-            val data = Nybble()
-            if (isItem) return data
-
-            data[0b0011] = when (facing) {
-                SidewaysDirection.SOUTH -> 0
-                SidewaysDirection.WEST -> 1
-                SidewaysDirection.NORTH -> 2
-                SidewaysDirection.EAST -> 3
+    override var facing: SidewaysDirection by NybbleStorage(0b0011, facing) {
+                when(it) {
+                    0 -> SidewaysDirection.SOUTH
+                    1 -> SidewaysDirection.WEST
+                    2 -> SidewaysDirection.NORTH
+                    3 -> SidewaysDirection.EAST
+                    else -> throw IllegalArgumentException()
+                }
             }
-            data[0b0100] = occupied
-            data[0b1000] = isHead
 
-            return data
-        }
+    var occupied: Boolean by NybbleStorage(0b0100, occupied, BOOLEAN_MAPPER)
+
+    var isHead: Boolean by NybbleStorage(0b1000, isHead, BOOLEAN_MAPPER)
 
     override fun clone() = Bed(facing, occupied, isHead)
 }
