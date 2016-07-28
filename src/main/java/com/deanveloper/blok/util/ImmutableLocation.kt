@@ -6,7 +6,7 @@ import com.deanveloper.blok.placeholders.World
  * @author Dean B
  */
 class ImmutableLocation(
-    override final val world: World,
+    override val world: World,
     override val x: Double,
     override val y: Double,
     override val z: Double
