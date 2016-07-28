@@ -13,4 +13,4 @@ val rand = Random()
 
 var nextEntityId: Int = 0
     get() = ++field
-    private set;
+    private set
