@@ -8,9 +8,9 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Fluid(
-    val type: Material,
-    var distance: Int = 0,
-    var downward: Boolean = false
+        val type: Material,
+        var distance: Int = 0,
+        var downward: Boolean = false
 ) : BlockData {
     override val id = when (type) {
         Material.FLOWING_WATER, Material.FLOWING_LAVA -> type.name.toLowerCase()

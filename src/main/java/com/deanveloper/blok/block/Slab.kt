@@ -8,8 +8,8 @@ import com.deanveloper.blok.util.Nybble
  * @author Dean B
  */
 class Slab(
-    var volume: Volume = Slab.Volume.TOP,
-    var type: SlabType = Slab.SlabType.STONE
+        var volume: Volume = Slab.Volume.TOP,
+        var type: SlabType = Slab.SlabType.STONE
 ) : BlockData, ItemData {
     override val id: String
         get() {

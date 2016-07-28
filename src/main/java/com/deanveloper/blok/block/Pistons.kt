@@ -14,8 +14,8 @@ import com.deanveloper.blok.util.toNybble
  * Represents a Piston
  */
 class Piston(
-    override var facing: Direction = Direction.DOWN,
-    var extended: Boolean = false
+        override var facing: Direction = Direction.DOWN,
+        var extended: Boolean = false
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "piston"
     override val intId = 33
@@ -31,9 +31,9 @@ class Piston(
 }
 
 class StickyPiston(
-    override var facing: Direction = Direction.DOWN,
-    var sixSided: Boolean = false,
-    var extended: Boolean = false
+        override var facing: Direction = Direction.DOWN,
+        var sixSided: Boolean = false,
+        var extended: Boolean = false
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "sticky_piston"
     override val intId = 29
@@ -52,8 +52,8 @@ class StickyPiston(
  * Represents a Piston Head
  */
 class PistonHead(
-    override var facing: Direction = Direction.DOWN,
-    var sticky: Boolean = false
+        override var facing: Direction = Direction.DOWN,
+        var sticky: Boolean = false
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_head"
     override val intId = 34
@@ -72,8 +72,8 @@ class PistonHead(
  * Represents a block that is being pushed by a Piston
  */
 class PistonExtension(
-    override var facing: Direction = Direction.DOWN,
-    var extended: Boolean = false
+        override var facing: Direction = Direction.DOWN,
+        var extended: Boolean = false
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_extension"
     override val intId = 36

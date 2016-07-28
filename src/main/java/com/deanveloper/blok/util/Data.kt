@@ -12,8 +12,8 @@ interface Data : Cloneable {
 }
 
 abstract class SeparatedData(
-    val itemIntId: Int,
-    val blockIntId: Int
+        val itemIntId: Int,
+        val blockIntId: Int
 ) : Data {
     var isItem: Boolean = true
     var isBlock: Boolean

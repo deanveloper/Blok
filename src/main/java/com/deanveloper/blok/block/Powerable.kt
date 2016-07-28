@@ -22,5 +22,5 @@ interface BinaryPowerSource : PowerSource {
     val powering: Boolean
 
     override val output: Int
-        get() = if(powering) 15 else 0
+        get() = if (powering) 15 else 0
 }

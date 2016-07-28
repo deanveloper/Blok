@@ -8,7 +8,7 @@ import com.deanveloper.blok.util.toNybble
  * Data for a block
  */
 class SimpleBlock(
-    override val id: String
+        override val id: String
 ) : BlockData {
     override val intId = Magic.stringIdToInt(id)
     override val rawData: Nybble = 0.toNybble()

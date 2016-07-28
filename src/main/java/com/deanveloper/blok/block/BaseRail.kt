@@ -1,7 +1,9 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.*
+import com.deanveloper.blok.util.BOOLEAN_MAPPER
+import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.NybbleStorage
 
 /**
  * Represents a rail
@@ -12,12 +14,12 @@ import com.deanveloper.blok.util.*
  * @property[rising]    The direction the rail is rising, [Rotatable.DirectionRepresentation.DOWN] if none
  */
 sealed class BaseRail<T : RailDirection>(
-    facing: T
+        facing: T
 ) : ItemData, BlockData, Rotatable<T> {
 
     class PoweredRail(
-        facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
-        powered: Boolean = false
+            facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
+            powered: Boolean = false
     ) : BaseRail<RigidRailDirection>(facing) {
         override val id = "golden_rail"
         override val intId = 27
@@ -31,8 +33,8 @@ sealed class BaseRail<T : RailDirection>(
     }
 
     class DetectorRail(
-        facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
-        pressed: Boolean = false
+            facing: RigidRailDirection = RigidRailDirection.NORTH_SOUTH,
+            pressed: Boolean = false
     ) : BaseRail<RigidRailDirection>(facing) {
         override val id = "detector_rail"
         override val intId = 28
@@ -46,7 +48,7 @@ sealed class BaseRail<T : RailDirection>(
     }
 
     class Rail(
-        facing: BendableRailDirection = BendableRailDirection.NORTH_SOUTH
+            facing: BendableRailDirection = BendableRailDirection.NORTH_SOUTH
     ) : BaseRail<BendableRailDirection>(facing) {
         override val id = "rail"
         override val intId = 66

@@ -1,7 +1,6 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Data
 import com.deanveloper.blok.util.Nybble
 import com.deanveloper.blok.util.toNybble
 
@@ -11,7 +10,7 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Ladder(
-    override var facing: SidewaysDirection = SidewaysDirection.NORTH
+        override var facing: SidewaysDirection = SidewaysDirection.NORTH
 ) : ItemData, BlockData, Rotatable<SidewaysDirection> {
     override val id = "ladder"
     override val intId = 65

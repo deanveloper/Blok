@@ -8,7 +8,7 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class TallGrass(
-    var type: GrassType = TallGrass.GrassType.SHRUB
+        var type: GrassType = TallGrass.GrassType.SHRUB
 ) : ItemData, BlockData {
     override val id = "tallgrass"
     override val intId = 31

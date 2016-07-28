@@ -6,6 +6,6 @@ package com.deanveloper.blok.block
  * @author Dean B
  */
 class PressurePlate(
-    var type: PlateType,
-    var
+        var type: PlateType,
+        var
 ) : BinaryPowerSource

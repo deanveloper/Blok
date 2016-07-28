@@ -10,7 +10,7 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Wool(
-    override var color: Colorable.DyeColor = Colorable.DyeColor.WHITE
+        override var color: Colorable.DyeColor = Colorable.DyeColor.WHITE
 ) : ItemData, BlockData, Colorable {
     override val id = "wool"
     override val intId = 35

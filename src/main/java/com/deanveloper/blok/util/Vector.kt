@@ -6,9 +6,9 @@ package com.deanveloper.blok.util
  * @author Dean B
  */
 abstract class Vector(
-    open val x: Double,
-    open val y: Double,
-    open val z: Double
+        open val x: Double,
+        open val y: Double,
+        open val z: Double
 ) : Cloneable, Comparable<Vector> {
     /**
      * Compare to another vector (judged by whichever has a larger magnitude)

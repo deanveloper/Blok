@@ -10,7 +10,7 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Chest(
-    override var facing: SidewaysDirection = SidewaysDirection.NORTH
+        override var facing: SidewaysDirection = SidewaysDirection.NORTH
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
     override val id = "chest"
     override val intId = 54

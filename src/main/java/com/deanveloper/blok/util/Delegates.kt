@@ -7,11 +7,11 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 
-val BOOLEAN_MAPPER: (Int) -> Boolean = { if(it == 1) true else false }
+val BOOLEAN_MAPPER: (Int) -> Boolean = { if (it == 1) true else false }
 
 val BYTE_MAPPER: (Int) -> Byte = { it.toByte() }
 
-val DIRECTION_MAPPER: (Int) -> DirectionRepresentation = {  }
+val DIRECTION_MAPPER: (Int) -> DirectionRepresentation = { }
 
 class NybbleStorage<R : Data, T>(
         val mask: Int,
@@ -24,7 +24,7 @@ class NybbleStorage<R : Data, T>(
         val maskWidth = mask.msbPos - mask.lsbPos + 1
         val max = maskWidth * maskWidth
         mapped = HashBiMap.create(max)
-        for(i in 0..(max-1)) {
+        for (i in 0..(max - 1)) {
             try {
                 mapped.put(i, mapper(i))
             } catch(ignored: Exception) {

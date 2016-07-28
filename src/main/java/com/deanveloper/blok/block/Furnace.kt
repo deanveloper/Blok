@@ -10,8 +10,8 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Furnace(
-    override var facing: SidewaysDirection = SidewaysDirection.NORTH,
-    var lit: Boolean = false
+        override var facing: SidewaysDirection = SidewaysDirection.NORTH,
+        var lit: Boolean = false
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
 
     override val id: String

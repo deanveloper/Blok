@@ -4,9 +4,9 @@ package com.deanveloper.blok.util
  * @author Dean B
  */
 open class MutableVector(
-    override var x: Double,
-    override var y: Double,
-    override var z: Double
+        override var x: Double,
+        override var y: Double,
+        override var z: Double
 ) : Vector(x, y, z) {
 
     /** @see [Vector.unaryMinus] */

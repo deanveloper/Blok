@@ -9,7 +9,7 @@ import com.deanveloper.blok.util.Nybble
  * @author Dean B
  */
 open class SimpleItem(
-    override val id: String
+        override val id: String
 ) : ItemData {
     override val intId = Magic.stringIdToInt(id)
     override var rawData = Nybble()

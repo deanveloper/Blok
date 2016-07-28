@@ -16,8 +16,8 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
     }
 
     class Sapling(
-        type: WoodType = WoodType.OAK,
-        var ready: Boolean = false
+            type: WoodType = WoodType.OAK,
+            var ready: Boolean = false
     ) : BaseWood(type) {
         override fun clone() = Planks(type)
 
@@ -33,11 +33,11 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
     }
 
     sealed class BaseDoubleWood(
-        type: WoodType,
-        val id1: String,
-        val id2: String,
-        val intId1: Int,
-        val intId2: Int
+            type: WoodType,
+            val id1: String,
+            val id2: String,
+            val intId1: Int,
+            val intId2: Int
     ) : BaseWood(type) {
 
         //region Variables/Values
@@ -57,8 +57,8 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
         //endregion
 
         class Log(
-            type: WoodType = WoodType.OAK,
-            override var facing: BiDirection = BiDirection.NORTH_SOUTH
+                type: WoodType = WoodType.OAK,
+                override var facing: BiDirection = BiDirection.NORTH_SOUTH
         ) : BaseDoubleWood(type, "log", "log2", 17, 162), Rotatable<BiDirection> {
             override fun clone() = Log(type)
 
@@ -73,9 +73,9 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
         }
 
         class Leaves(
-            type: WoodType = WoodType.OAK,
-            var noDecay: Boolean = false,
-            var checkDecay: Boolean = true
+                type: WoodType = WoodType.OAK,
+                var noDecay: Boolean = false,
+                var checkDecay: Boolean = true
         ) : BaseDoubleWood(type, "leaves", "leaves2", 17, 162) {
             override val rawData: Nybble
                 get() {

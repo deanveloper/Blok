@@ -10,8 +10,8 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Lever(
-    override var facing: Direction = Direction.DOWN,
-    override var powering: Boolean = false
+        override var facing: Direction = Direction.DOWN,
+        override var powering: Boolean = false
 ) : ItemData, BlockData, BinaryPowerSource, Rotatable<Direction> {
     override val id = "lever"
     override val intId = 69

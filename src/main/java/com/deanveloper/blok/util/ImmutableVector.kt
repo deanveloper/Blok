@@ -4,9 +4,9 @@ package com.deanveloper.blok.util
  * @author Dean B
  */
 open class ImmutableVector(
-    override final val x: Double,
-    override final val y: Double,
-    override final val z: Double
+        override final val x: Double,
+        override final val y: Double,
+        override final val z: Double
 ) : Vector(x, y, z) {
     companion object {
         val ZERO = ImmutableVector(0.0, 0.0, 0.0)

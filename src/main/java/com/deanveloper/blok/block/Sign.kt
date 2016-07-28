@@ -10,8 +10,8 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Sign(
-    val signType: SignType,
-    override var facing: ManyDirection = ManyDirection.SOUTH
+        val signType: SignType,
+        override var facing: ManyDirection = ManyDirection.SOUTH
 ) : ItemData, BlockData, Rotatable<ManyDirection> {
     override val id: String
         get() = signType.id

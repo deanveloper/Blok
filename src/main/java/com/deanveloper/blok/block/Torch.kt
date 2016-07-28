@@ -8,7 +8,7 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Torch(
-    facing: Direction = Direction.UP
+        facing: Direction = Direction.UP
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "torch"
     override val intId = 50
