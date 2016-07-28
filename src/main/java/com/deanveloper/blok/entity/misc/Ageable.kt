@@ -13,4 +13,6 @@ interface Ageable {
      * If the entity is an adult
      */
     var adult: Boolean
+        get() = !baby
+        set(value) { baby = !value }
 }
