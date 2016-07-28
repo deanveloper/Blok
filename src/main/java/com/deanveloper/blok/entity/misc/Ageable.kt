@@ -3,7 +3,7 @@ package com.deanveloper.blok.entity.misc
 /**
  * @author Dean B
  */
-interface Growable {
+interface Ageable {
     /**
      * If the entity is a baby
      */
