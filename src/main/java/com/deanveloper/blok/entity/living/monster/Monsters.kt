@@ -1,14 +1,14 @@
 package com.deanveloper.blok.entity.living.monster
 
 import com.deanveloper.blok.entity.living.LivingEntity
-import com.deanveloper.blok.entity.misc.Targets
+import com.deanveloper.blok.entity.misc.CanTarget
 
 /**
  * A monster
  *
  * @author Dean B
  */
-interface Monster : LivingEntity, Targets
+interface Monster : LivingEntity, CanTarget
 
 interface Blaze : Monster
 

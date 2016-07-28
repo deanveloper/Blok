@@ -1,14 +1,14 @@
 package com.deanveloper.blok.entity.living.animal
 
 import com.deanveloper.blok.entity.Entity
-import com.deanveloper.blok.entity.misc.Targets
+import com.deanveloper.blok.entity.misc.CanTarget
 
 /**
  * A tamable mob
  *
  * @author Dean B
  */
-interface Tamable : Targets {
+interface Tamable : CanTarget {
     var owner: Entity?
 
     var percentTamed: Float
