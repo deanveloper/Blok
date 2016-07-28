@@ -8,5 +8,5 @@ abstract class Location(
     y: Double,
     z: Double
 ) : Vector(x, y, z) {
-    override fun toString(): String = "${javaClass.simpleName}[x:$x,y:$y,z:$z]"
+    override fun toString(): String = "${javaClass.simpleName}[world:$world,x:$x,y:$y,z:$z]"
 }
