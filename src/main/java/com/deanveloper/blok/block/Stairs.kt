@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -14,9 +14,9 @@ class Stairs(
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
     override val id = type.id
     override val intId = type.intId
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
-            val data: Nybble = facing.asInt.toNybble()
+            val data: Nibble = facing.asInt.toNybble()
             data[0b0100] = upsideDown
 
             return data

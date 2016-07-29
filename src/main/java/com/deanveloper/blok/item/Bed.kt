@@ -3,7 +3,7 @@ package com.deanveloper.blok.item
 import com.deanveloper.blok.block.Rotatable
 import com.deanveloper.blok.block.SidewaysDirection
 import com.deanveloper.blok.util.BOOLEAN_MAPPER
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.NybbleStorage
 import com.deanveloper.blok.util.SeparatedData
 
@@ -18,7 +18,7 @@ class Bed(
         isHead: Boolean = false
 ) : SeparatedData(355, 26), Rotatable<SidewaysDirection> {
     override val id = "bed"
-    override var rawData = Nybble()
+    override var rawData = Nibble()
 
     override var facing: SidewaysDirection by NybbleStorage(0b0011, facing) {
         when (it) {

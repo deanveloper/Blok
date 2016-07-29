@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -14,7 +14,7 @@ class Wool(
 ) : ItemData, BlockData, Colorable {
     override val id = "wool"
     override val intId = 35
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() = color.ordinal.toNybble()
 
     override fun clone() = Wool(color)

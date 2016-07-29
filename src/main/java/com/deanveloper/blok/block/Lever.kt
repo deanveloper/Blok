@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -15,7 +15,7 @@ class Lever(
 ) : ItemData, BlockData, BinaryPowerSource, Rotatable<Direction> {
     override val id = "lever"
     override val intId = 69
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = output

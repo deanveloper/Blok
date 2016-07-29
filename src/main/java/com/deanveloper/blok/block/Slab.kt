@@ -2,7 +2,7 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Data
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 
 /**
  * @author Dean B
@@ -37,9 +37,9 @@ class Slab(
             else -> throw IllegalStateException("String id is not valid! ($id)")
         }
 
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
-            var data = Nybble()
+            var data = Nibble()
             data[0b0111] = type.data
             data[0b1000] = volume == Volume.TOP || volume == Volume.SMOOTH_ALL
 

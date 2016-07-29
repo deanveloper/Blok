@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -12,7 +12,7 @@ class TallGrass(
 ) : ItemData, BlockData {
     override val id = "tallgrass"
     override val intId = 31
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() = type.ordinal.toNybble()
 
     override fun clone() = TallGrass(type)

@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -19,7 +19,7 @@ class Piston(
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "piston"
     override val intId = 33
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = extended
@@ -37,7 +37,7 @@ class StickyPiston(
 ) : ItemData, BlockData, Rotatable<Direction> {
     override val id = "sticky_piston"
     override val intId = 29
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = extended
@@ -57,7 +57,7 @@ class PistonHead(
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_head"
     override val intId = 34
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = sticky
@@ -77,7 +77,7 @@ class PistonExtension(
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_extension"
     override val intId = 36
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             val data = facing.asInt.toNybble()
             data[0b1000] = extended

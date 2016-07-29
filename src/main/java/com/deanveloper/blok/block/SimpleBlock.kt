@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.util.Magic
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -11,7 +11,7 @@ class SimpleBlock(
         override val id: String
 ) : BlockData {
     override val intId = Magic.stringIdToInt(id)
-    override val rawData: Nybble = 0.toNybble()
+    override val rawData: Nibble = 0.toNybble()
     override fun clone() = SimpleBlock(id)
 }
 

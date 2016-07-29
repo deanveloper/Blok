@@ -1,12 +1,12 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 
 class Flower(var type: FlowerData = FlowerData.POPPY) : ItemData, BlockData {
     override val id = "red_flower"
     override val intId = 38
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() = throw UnsupportedOperationException()
 
     override fun clone() = Flower(type)

@@ -11,7 +11,7 @@ import java.lang.Integer as JInt
  *
  * @author Dean B
  */
-class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
+class Nibble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
     private val position: Int
     private val raw: AtomicInteger
 
@@ -20,19 +20,19 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
         set(value) = raw.set((value and 0b1111) shl position)
 
     companion object {
-        @JvmStatic private val lastCreated: AtomicReference<Nybble?> = AtomicReference(null)
+        @JvmStatic private val lastCreated: AtomicReference<Nibble?> = AtomicReference(null)
     }
 
     init {
-        val lastNybble = lastCreated.getAndSet(this)
-        if (lastNybble == null || lastNybble.position == 12) {
+        val lastNibble = lastCreated.getAndSet(this)
+        if (lastNibble == null || lastNibble.position == 12) {
             position = 0
             raw = AtomicInteger(0)
         } else {
-            position = lastNybble.position + 4
-            raw = lastNybble.raw
+            position = lastNibble.position + 4
+            raw = lastNibble.raw
         }
-        extracted = value
+        extracted
     }
 
     constructor(byte: Byte) : this(byte.toInt())
@@ -46,7 +46,7 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
     override fun toByte() = extracted.toByte()
 
     /**
-     * Sets bits of our Nybble to a certain value
+     * Sets bits of our Nibble to a certain value
      *
      * @param[mask]     The bits to set
      * @param[value]    The value for the bit
@@ -61,7 +61,7 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
     }
 
     /**
-     * Sets bits of our Nybble to an integer value
+     * Sets bits of our Nibble to an integer value
      *
      * @param[mask]     The bits we are setting
      * @param[value]    The number to set the bits to
@@ -79,7 +79,7 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
     }
 }
 
-fun Int.toNybble() = Nybble(this)
+fun Int.toNybble() = Nibble(this)
 
 val Int.lsbPos: Int
     get() = JInt.numberOfTrailingZeros(JInt.lowestOneBit(this))

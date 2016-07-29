@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -18,7 +18,7 @@ class Furnace(
         get() = if (lit) "lit_furnace" else "furnace"
     override val intId: Int
         get() = if (lit) 62 else 61
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() = facing.asInt.toNybble()
 
     override fun clone() = Furnace(facing, lit)

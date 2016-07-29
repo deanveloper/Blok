@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -21,12 +21,12 @@ class Door @JvmOverloads constructor(
         get() = type.id
     override val intId: Int
         get() = if (isItem) type.intItemId else type.intBlockId
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             if (isItem) {
                 return 0.toNybble()
             } else {
-                val data = Nybble(0)
+                val data = Nibble(0)
 
                 if (upperPart) {
                     data[0b0001] = rightHinged

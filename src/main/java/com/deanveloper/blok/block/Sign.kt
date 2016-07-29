@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -17,7 +17,7 @@ class Sign(
         get() = signType.id
     override val intId: Int
         get() = signType.intId
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             when (signType) {
                 SignType.ITEM -> {

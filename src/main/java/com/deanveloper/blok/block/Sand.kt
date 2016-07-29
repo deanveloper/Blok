@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -12,7 +12,7 @@ import com.deanveloper.blok.util.toNybble
 class Sand(val red: Boolean = false) : BlockData, ItemData {
     override val id = "sand"
     override val intId = 12
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() = (if (red) 1 else 0).toNybble()
 
     override fun clone() = Sand(red)

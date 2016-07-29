@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.Material
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -24,7 +24,7 @@ class Fluid(
             else -> throw IllegalStateException("[type] is not flowing water/lava (is $type)")
         }
 
-    override val rawData: Nybble
+    override val rawData: Nibble
         get() {
             val data = distance.toNybble()
             data[0b1000] = downward

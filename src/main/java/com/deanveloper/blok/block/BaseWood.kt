@@ -1,7 +1,7 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Nybble
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 
@@ -11,7 +11,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 
         override val id = "planks"
         override val intId = 5
-        override val rawData: Nybble
+        override val rawData: Nibble
             get() = type.ordinal.toNybble()
     }
 
@@ -23,7 +23,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
 
         override val id = "sapling"
         override val intId = 5
-        override val rawData: Nybble
+        override val rawData: Nibble
             get() {
                 val data = type.ordinal.toNybble()
                 data[0b1000] = ready
@@ -62,7 +62,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
         ) : BaseDoubleWood(type, "log", "log2", 17, 162), Rotatable<BiDirection> {
             override fun clone() = Log(type)
 
-            override val rawData: Nybble
+            override val rawData: Nibble
                 get() {
                     val data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
 
@@ -77,7 +77,7 @@ sealed class BaseWood(var type: WoodType) : ItemData, BlockData {
                 var noDecay: Boolean = false,
                 var checkDecay: Boolean = true
         ) : BaseDoubleWood(type, "leaves", "leaves2", 17, 162) {
-            override val rawData: Nybble
+            override val rawData: Nibble
                 get() {
                     val data = (if (isFirstType) type.ordinal else type.ordinal - 4).toNybble()
                     data[0b0100] = noDecay
