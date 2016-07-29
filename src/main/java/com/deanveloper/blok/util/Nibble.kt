@@ -11,13 +11,19 @@ import java.lang.Integer as JInt
  *
  * @author Dean B
  */
-class Nibble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
+class Nibble @JvmOverloads constructor(init: Int = 0b0000) : Number() {
     private val position: Int
     private val raw: AtomicInteger
 
     private var extracted: Int
         get() = (raw.get() ushr position) and 0b1111
         set(value) = raw.set((value and 0b1111) shl position)
+
+    private inline fun getAndUpdate(crossinline update: (Int) -> Int) {
+        raw.getAndUpdate lambda@{ value ->
+            return@lambda (update((value ushr position) and 0b1111) and 0b1111) shl position
+        }
+    }
 
     companion object {
         @JvmStatic private val lastCreated: AtomicReference<Nibble?> = AtomicReference(null)
@@ -32,7 +38,8 @@ class Nibble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
             position = lastNibble.position + 4
             raw = lastNibble.raw
         }
-        extracted
+
+        extracted = init
     }
 
     constructor(byte: Byte) : this(byte.toInt())
@@ -52,11 +59,12 @@ class Nibble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
      * @param[value]    The value for the bit
      */
     operator fun set(mask: Int, value: Boolean) {
-        val internal = extracted
-        if (value) {
-            extracted = internal or mask
-        } else {
-            extracted = internal and mask.inv()
+        getAndUpdate {
+            if (value) {
+                it or mask
+            } else {
+                it and mask.inv()
+            }
         }
     }
 
@@ -70,8 +78,7 @@ class Nibble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
         @Suppress("NAME_SHADOWING")
         var value = value shl mask.lsbPos
         value = value.inv() and mask
-        val internal = extracted
-        extracted = internal xor value
+        getAndUpdate { it xor value }
     }
 
     operator fun get(mask: Int): Int {
