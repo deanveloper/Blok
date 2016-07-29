@@ -2,9 +2,8 @@
 
 package com.deanveloper.blok.util
 
-import java.lang.ref.Reference
-import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 import java.lang.Integer as JInt
 
 /**
@@ -14,39 +13,37 @@ import java.lang.Integer as JInt
  */
 class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
     private val position: Int
-    private var raw: AtomicInteger
+    private val raw: AtomicInteger
 
-    private var internal: Int
-        get() {
-            return raw.get() ushr (position) and 0b1111
-        }
-        set(value) {
-            raw.set(raw.get() or (value shl position))
-        }
+    private var extracted: Int
+        get() = (raw.get() ushr position) and 0b1111
+        set(value) = raw.set((value and 0b1111) shl position)
 
     companion object {
-        @JvmStatic private val lastNybble: Nybble? = null
+        @JvmStatic private val lastCreated: AtomicReference<Nybble?> = AtomicReference(null)
     }
 
     init {
-        if(lastNybble == null || lastNybble.position == 3) {
+        val lastNybble = lastCreated.getAndSet(this)
+        if (lastNybble == null || lastNybble.position == 12) {
             position = 0
             raw = AtomicInteger(0)
         } else {
-            position = lastNybble.position + 1
+            position = lastNybble.position + 4
             raw = lastNybble.raw
         }
+        extracted = value
     }
 
     constructor(byte: Byte) : this(byte.toInt())
 
-    override fun toChar() = internal.toChar()
-    override fun toDouble() = internal.toDouble()
-    override fun toFloat() = internal.toFloat()
-    override fun toInt() = internal
-    override fun toLong() = internal.toLong()
-    override fun toShort() = internal.toShort()
-    override fun toByte() = internal.toByte()
+    override fun toChar() = extracted.toChar()
+    override fun toDouble() = extracted.toDouble()
+    override fun toFloat() = extracted.toFloat()
+    override fun toInt() = extracted
+    override fun toLong() = extracted.toLong()
+    override fun toShort() = extracted.toShort()
+    override fun toByte() = extracted.toByte()
 
     /**
      * Sets bits of our Nybble to a certain value
@@ -55,10 +52,11 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
      * @param[value]    The value for the bit
      */
     operator fun set(mask: Int, value: Boolean) {
+        val internal = extracted
         if (value) {
-            internal or mask
+            extracted = internal or mask
         } else {
-            internal and mask.inv()
+            extracted = internal and mask.inv()
         }
     }
 
@@ -72,11 +70,12 @@ class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
         @Suppress("NAME_SHADOWING")
         var value = value shl mask.lsbPos
         value = value.inv() and mask
-        internal = internal xor value
+        val internal = extracted
+        extracted = internal xor value
     }
 
     operator fun get(mask: Int): Int {
-        return internal shr mask.lsbPos
+        return extracted shr mask.lsbPos
     }
 }
 
