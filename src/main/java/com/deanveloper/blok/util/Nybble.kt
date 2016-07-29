@@ -2,6 +2,9 @@
 
 package com.deanveloper.blok.util
 
+import java.lang.ref.Reference
+import java.util.*
+import java.util.concurrent.atomic.AtomicInteger
 import java.lang.Integer as JInt
 
 /**
@@ -10,10 +13,30 @@ import java.lang.Integer as JInt
  * @author Dean B
  */
 class Nybble @JvmOverloads constructor(value: Int = 0b0000) : Number() {
-    private var internal: Int = value and 0b1111
-        set(value) {
-            field = internal and 0b1111
+    private val position: Int
+    private var raw: AtomicInteger
+
+    private var internal: Int
+        get() {
+            return raw.get() ushr (position) and 0b1111
         }
+        set(value) {
+            raw.set(raw.get() or (value shl position))
+        }
+
+    companion object {
+        @JvmStatic private val lastNybble: Nybble? = null
+    }
+
+    init {
+        if(lastNybble == null || lastNybble.position == 3) {
+            position = 0
+            raw = AtomicInteger(0)
+        } else {
+            position = lastNybble.position + 1
+            raw = lastNybble.raw
+        }
+    }
 
     constructor(byte: Byte) : this(byte.toInt())
 
