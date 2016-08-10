@@ -25,7 +25,7 @@ class Nibble @JvmOverloads constructor(init: Int = 0b0000) : Number() {
         }
     }
 
-    companion object {
+    private companion object {
         @JvmStatic private val lastCreated: AtomicReference<Nibble?> = AtomicReference(null)
     }
 
