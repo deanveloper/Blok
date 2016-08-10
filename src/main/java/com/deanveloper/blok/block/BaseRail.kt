@@ -3,7 +3,7 @@ package com.deanveloper.blok.block
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.BOOLEAN_MAPPER
 import com.deanveloper.blok.util.Nibble
-import com.deanveloper.blok.util.NybbleStorage
+import com.deanveloper.blok.util.NibbleStorage
 
 /**
  * Represents a rail
@@ -24,9 +24,9 @@ sealed class BaseRail<T : RailDirection>(
         override val intId = 27
         override var rawData = Nibble()
 
-        var powered: Boolean by NybbleStorage(0b1000, powered, BOOLEAN_MAPPER)
+        var powered: Boolean by NibbleStorage(0b1000, powered, BOOLEAN_MAPPER)
 
-        override var facing: RigidRailDirection by NybbleStorage(0b0111, facing) { RigidRailDirection.values()[it] }
+        override var facing: RigidRailDirection by NibbleStorage(0b0111, facing) { RigidRailDirection.values()[it] }
 
         override fun clone() = PoweredRail(facing, powered)
     }
@@ -39,9 +39,9 @@ sealed class BaseRail<T : RailDirection>(
         override val intId = 28
         override var rawData = Nibble()
 
-        var pressed: Boolean by NybbleStorage(0b1000, pressed, BOOLEAN_MAPPER)
+        var pressed: Boolean by NibbleStorage(0b1000, pressed, BOOLEAN_MAPPER)
 
-        override var facing: RigidRailDirection by NybbleStorage(0b0111, facing) { RigidRailDirection.values()[it] }
+        override var facing: RigidRailDirection by NibbleStorage(0b0111, facing) { RigidRailDirection.values()[it] }
 
         override fun clone() = DetectorRail(facing, pressed)
     }
@@ -53,7 +53,7 @@ sealed class BaseRail<T : RailDirection>(
         override val intId = 66
         override var rawData = Nibble()
 
-        override var facing by NybbleStorage(0b1111, facing) { BendableRailDirection.values()[it] }
+        override var facing by NibbleStorage(0b1111, facing) { BendableRailDirection.values()[it] }
 
         override fun clone() = Rail(facing)
 

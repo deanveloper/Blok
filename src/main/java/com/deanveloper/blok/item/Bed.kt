@@ -4,7 +4,7 @@ import com.deanveloper.blok.block.Rotatable
 import com.deanveloper.blok.block.SidewaysDirection
 import com.deanveloper.blok.util.BOOLEAN_MAPPER
 import com.deanveloper.blok.util.Nibble
-import com.deanveloper.blok.util.NybbleStorage
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.SeparatedData
 
 /**
@@ -20,7 +20,7 @@ class Bed(
     override val id = "bed"
     override var rawData = Nibble()
 
-    override var facing: SidewaysDirection by NybbleStorage(0b0011, facing) {
+    override var facing: SidewaysDirection by NibbleStorage(0b0011, facing) {
         when (it) {
             0 -> SidewaysDirection.SOUTH
             1 -> SidewaysDirection.WEST
@@ -30,9 +30,9 @@ class Bed(
         }
     }
 
-    var occupied: Boolean by NybbleStorage(0b0100, occupied, BOOLEAN_MAPPER)
+    var occupied: Boolean by NibbleStorage(0b0100, occupied, BOOLEAN_MAPPER)
 
-    var isHead: Boolean by NybbleStorage(0b1000, isHead, BOOLEAN_MAPPER)
+    var isHead: Boolean by NibbleStorage(0b1000, isHead, BOOLEAN_MAPPER)
 
     override fun clone() = Bed(facing, occupied, isHead)
 }

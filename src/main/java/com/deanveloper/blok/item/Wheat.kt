@@ -2,7 +2,7 @@ package com.deanveloper.blok.item
 
 import com.deanveloper.blok.block.Farmable
 import com.deanveloper.blok.util.Nibble
-import com.deanveloper.blok.util.NybbleStorage
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.SeparatedData
 
 /**
@@ -16,7 +16,7 @@ class Wheat(
     override val id = "wheat"
     override var rawData = Nibble()
 
-    override var growth: Farmable.Growth by NybbleStorage(0b1111, growth) { Farmable.Growth.values()[it] }
+    override var growth: Farmable.Growth by NibbleStorage(0b1111, growth) { Farmable.Growth.values()[it] }
 
     override fun clone() = Wheat(growth)
 

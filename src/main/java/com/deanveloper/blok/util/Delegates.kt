@@ -10,7 +10,7 @@ val BOOLEAN_MAPPER: (Int) -> Boolean = { if (it == 1) true else false }
 
 val BYTE_MAPPER: (Int) -> Byte = { it.toByte() }
 
-class NybbleStorage<in R : Data, T>(
+class NibbleStorage<in R : Data, T>(
         val mask: Int,
         init: T,
         mapper: (Int) -> T
