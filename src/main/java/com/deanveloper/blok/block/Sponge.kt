@@ -1,7 +1,9 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.BOOLEAN_MAPPER
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -9,11 +11,12 @@ import com.deanveloper.blok.util.toNybble
  *
  * @author Dean B
  */
-class Sponge(var wet: Boolean = false) : ItemData, BlockData {
+class Sponge(wet: Boolean = false) : ItemData, BlockData {
     override val id = "sponge"
     override val intId = 19
-    override val rawData: Nibble
-        get() = (if (wet) 1 else 0).toNybble()
+    override var rawData = Nibble()
+
+    var wet: Boolean by NibbleStorage(0b0001, wet, BOOLEAN_MAPPER)
 
     override fun clone() = Sponge(wet)
 }

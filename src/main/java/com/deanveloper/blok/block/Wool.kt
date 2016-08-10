@@ -2,6 +2,7 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -10,13 +11,13 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Wool(
-        override var color: Colorable.DyeColor = Colorable.DyeColor.WHITE
+        color: Colorable.DyeColor = Colorable.DyeColor.WHITE
 ) : ItemData, BlockData, Colorable {
     override val id = "wool"
     override val intId = 35
-    override val rawData: Nibble
-        get() = color.ordinal.toNybble()
+    override var rawData = Nibble()
 
+    override var color: Colorable.DyeColor by NibbleStorage(0b1111, color, { Colorable.DyeColor.values()[it] })
     override fun clone() = Wool(color)
 
 }

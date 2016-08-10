@@ -2,6 +2,7 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.placeholders.Note
+import com.deanveloper.blok.util.Nibble
 import com.deanveloper.blok.util.toNybble
 
 class Noteblock(
@@ -10,7 +11,7 @@ class Noteblock(
 ) : ItemData, BlockData {
     override val id = "noteblock"
     override val intId = 25
-    override val rawData = 0.toNybble()
+    override var rawData = Nibble()
 
     override fun clone() = Noteblock(powered, note)
 }

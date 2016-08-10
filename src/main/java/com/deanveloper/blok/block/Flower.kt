@@ -2,16 +2,18 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 
-class Flower(var type: FlowerData = FlowerData.POPPY) : ItemData, BlockData {
+class Flower(type: FlowerType = FlowerType.POPPY) : ItemData, BlockData {
     override val id = "red_flower"
     override val intId = 38
-    override val rawData: Nibble
-        get() = throw UnsupportedOperationException()
+    override var rawData = Nibble()
 
     override fun clone() = Flower(type)
 
-    enum class FlowerData {
+    var type: FlowerType by NibbleStorage(0b1111, type, { FlowerType.values()[it] })
+
+    enum class FlowerType {
         POPPY,
         BLUE_ORCHID,
         ALLIUM,

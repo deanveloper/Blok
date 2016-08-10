@@ -1,7 +1,9 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.BOOLEAN_MAPPER
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -12,37 +14,31 @@ import com.deanveloper.blok.util.toNybble
 class Door @JvmOverloads constructor(
         val isItem: Boolean = true,
         var type: DoorType = Door.DoorType.OAK,
-        override var facing: SidewaysDirection = SidewaysDirection.NORTH,
-        override var powered: Boolean = false,
-        var upperPart: Boolean = false,
-        var rightHinged: Boolean = false
+        facing: SidewaysDirection = SidewaysDirection.NORTH,
+        powered: Boolean = false,
+        _upperPart: Boolean = false
 ) : ItemData, BlockData, Rotatable<SidewaysDirection>, Powerable {
     override val id: String
         get() = type.id
     override val intId: Int
         get() = if (isItem) type.intItemId else type.intBlockId
-    override val rawData: Nibble
-        get() {
-            if (isItem) {
-                return 0.toNybble()
-            } else {
-                val data = Nibble(0)
+    override var rawData = Nibble()
 
-                if (upperPart) {
-                    data[0b0001] = rightHinged
-                    data[0b0010] = powered
-                    data[0b1000] = true
-                } else {
-                    data[0b0011] = facing.asInt
-                    data[0b0100] = powered
-                    data[0b1000] = false
-                }
-
-                return data
-            }
+    override var facing: SidewaysDirection by NibbleStorage(0b0011, facing) {
+        if(upperPart) {
+            TODO()
+        } else {
+            SidewaysDirection.fromInt(it)
         }
+    }
 
-    override fun clone() = Door(isItem, type, facing, powered, upperPart, rightHinged)
+    override var powered: Boolean by NibbleStorage(0b0110, powered) {
+        BOOLEAN_MAPPER(if(upperPart) it else it ushr 1)
+    }
+
+    var upperPart: Boolean by NibbleStorage(0b1000, _upperPart, BOOLEAN_MAPPER)
+
+    override fun clone() = Door(isItem, type, facing, powered, upperPart)
 
 
     enum class DoorType(

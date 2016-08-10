@@ -1,16 +1,19 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.BOOLEAN_MAPPER
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 
 /**
  * @author Dean B
  */
-class Tnt(var explodes: Boolean = false) : ItemData, BlockData {
+class Tnt(unstable: Boolean = false) : ItemData, BlockData {
     override val id = "tnt"
     override val intId = 46
-    override val rawData: Nibble
-        get() = Nibble().apply { this[0b0001] = explodes }
+    override var rawData = Nibble()
 
-    override fun clone() = Tnt(explodes)
+    var unstable: Boolean by NibbleStorage(0b0001, unstable, BOOLEAN_MAPPER)
+
+    override fun clone() = Tnt(unstable)
 }

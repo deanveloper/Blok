@@ -1,7 +1,9 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.BOOLEAN_MAPPER
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -9,22 +11,18 @@ import com.deanveloper.blok.util.toNybble
  */
 class Stairs(
         var type: StairType,
-        override var facing: SidewaysDirection = SidewaysDirection.EAST,
-        var upsideDown: Boolean = false
+        facing: SidewaysDirection = SidewaysDirection.EAST,
+        upsideDown: Boolean = false
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
-    override val id = type.id
-    override val intId = type.intId
-    override val rawData: Nibble
-        get() {
-            val data: Nibble = facing.asInt.toNybble()
-            data[0b0100] = upsideDown
+    override val id: String
+        get() = type.id
+    override val intId: Int
+        get() = type.intId
+    override var rawData = Nibble()
 
-            return data
-        }
+    override var facing: SidewaysDirection by NibbleStorage(0b0011, facing, { SidewaysDirection.fromInt(it) })
 
-    init {
-        this.facing = facing
-    }
+    var upsideDown: Boolean by NibbleStorage(0b0100, upsideDown, BOOLEAN_MAPPER)
 
     override fun clone() = Stairs(type, facing, upsideDown)
 

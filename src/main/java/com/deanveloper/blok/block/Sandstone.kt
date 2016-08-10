@@ -2,6 +2,7 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -9,11 +10,12 @@ import com.deanveloper.blok.util.toNybble
  *
  * @author Dean B
  */
-class Sandstone(var type: SandstoneType = Sandstone.SandstoneType.NORMAL) : BlockData, ItemData {
+class Sandstone(type: SandstoneType = Sandstone.SandstoneType.NORMAL) : BlockData, ItemData {
     override val id = "sandstone"
     override val intId = 24
-    override val rawData: Nibble
-        get() = type.ordinal.toNybble()
+    override var rawData = Nibble()
+
+    var type: SandstoneType by NibbleStorage(0b0011, type, { SandstoneType.values()[it] })
 
     override fun clone() = Sandstone(type)
 

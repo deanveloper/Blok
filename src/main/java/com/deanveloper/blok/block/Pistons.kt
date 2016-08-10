@@ -1,7 +1,9 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
+import com.deanveloper.blok.util.BOOLEAN_MAPPER
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -14,56 +16,35 @@ import com.deanveloper.blok.util.toNybble
  * Represents a Piston
  */
 class Piston(
-        override var facing: Direction = Direction.DOWN,
-        var extended: Boolean = false
+        facing: Direction = Direction.DOWN,
+        extended: Boolean = false,
+        val sticky: Boolean = false
 ) : ItemData, BlockData, Rotatable<Direction> {
-    override val id = "piston"
-    override val intId = 33
-    override val rawData: Nibble
-        get() {
-            val data = facing.asInt.toNybble()
-            data[0b1000] = extended
+    override val id = if(sticky) "sticky_piston" else "piston"
+    override val intId = if(sticky) 29 else 33
+    override var rawData = Nibble()
 
-            return data
-        }
+    override var facing: Direction by NibbleStorage(0b0111, facing, { Direction.values()[it] })
 
-    override fun clone() = Piston(facing, extended)
-}
+    var extended: Boolean by NibbleStorage(0b1000, extended, BOOLEAN_MAPPER)
 
-class StickyPiston(
-        override var facing: Direction = Direction.DOWN,
-        var sixSided: Boolean = false,
-        var extended: Boolean = false
-) : ItemData, BlockData, Rotatable<Direction> {
-    override val id = "sticky_piston"
-    override val intId = 29
-    override val rawData: Nibble
-        get() {
-            val data = facing.asInt.toNybble()
-            data[0b1000] = extended
-
-            return data
-        }
-
-    override fun clone() = StickyPiston(facing, sixSided, extended)
+    override fun clone() = Piston(facing, extended, sticky)
 }
 
 /**
  * Represents a Piston Head
  */
 class PistonHead(
-        override var facing: Direction = Direction.DOWN,
-        var sticky: Boolean = false
+        facing: Direction = Direction.DOWN,
+        sticky: Boolean = false
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_head"
     override val intId = 34
-    override val rawData: Nibble
-        get() {
-            val data = facing.asInt.toNybble()
-            data[0b1000] = sticky
+    override var rawData = Nibble()
 
-            return data
-        }
+    override var facing: Direction by NibbleStorage(0b0111, facing, { Direction.values()[it] })
+
+    var sticky: Boolean by NibbleStorage(0b1000, sticky, BOOLEAN_MAPPER)
 
     override fun clone() = PistonHead(facing, sticky)
 }
@@ -72,18 +53,16 @@ class PistonHead(
  * Represents a block that is being pushed by a Piston
  */
 class PistonExtension(
-        override var facing: Direction = Direction.DOWN,
-        var extended: Boolean = false
+        facing: Direction = Direction.DOWN,
+        extended: Boolean = false
 ) : BlockData, Rotatable<Direction> {
     override val id = "piston_extension"
     override val intId = 36
-    override val rawData: Nibble
-        get() {
-            val data = facing.asInt.toNybble()
-            data[0b1000] = extended
+    override var rawData = Nibble()
 
-            return data
-        }
+    override var facing: Direction by NibbleStorage(0b0111, facing, { Direction.values()[it] })
+
+    var extended: Boolean by NibbleStorage(0b1000, extended, BOOLEAN_MAPPER)
 
     override fun clone() = PistonExtension(facing, extended)
 }

@@ -1,16 +1,15 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.Material
-import com.deanveloper.blok.util.Nibble
-import com.deanveloper.blok.util.toNybble
+import com.deanveloper.blok.util.*
 
 /**
  * @author Dean B
  */
 class Fluid(
         val type: Material,
-        var distance: Int = 0,
-        var downward: Boolean = false
+        distance: Byte = 0,
+        downward: Boolean = false
 ) : BlockData {
     override val id = when (type) {
         Material.FLOWING_WATER, Material.FLOWING_LAVA -> type.name.toLowerCase()
@@ -24,13 +23,11 @@ class Fluid(
             else -> throw IllegalStateException("[type] is not flowing water/lava (is $type)")
         }
 
-    override val rawData: Nibble
-        get() {
-            val data = distance.toNybble()
-            data[0b1000] = downward
+    override var rawData = Nibble()
 
-            return data
-        }
+    var distance: Byte by NibbleStorage(0b0111, distance, BYTE_MAPPER)
+
+    var downward: Boolean by NibbleStorage(0b0111, downward, BOOLEAN_MAPPER)
 
     override fun clone() = Fluid(type, distance, downward)
 

@@ -2,6 +2,7 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -11,32 +12,21 @@ import com.deanveloper.blok.util.toNybble
  */
 class Sign(
         val signType: SignType,
-        override var facing: ManyDirection = ManyDirection.SOUTH
+        facing: ManyDirection = ManyDirection.SOUTH
 ) : ItemData, BlockData, Rotatable<ManyDirection> {
     override val id: String
         get() = signType.id
     override val intId: Int
         get() = signType.intId
-    override val rawData: Nibble
-        get() {
-            when (signType) {
-                SignType.ITEM -> {
-                    return 0.toNybble()
-                }
+    override var rawData = Nibble()
 
-                SignType.STANDING -> {
-                    return facing.asInt.toNybble()
-                }
-
-                SignType.WALL -> {
-                    if (facing.name in SidewaysDirection.values().map { it.name }) {
-                        return SidewaysDirection.valueOf(facing.name).asInt.toNybble()
-                    } else {
-                        return SidewaysDirection.NORTH.asInt.toNybble()
-                    }
-                }
-            }
+    override var facing: ManyDirection by NibbleStorage(0b1111, facing) {
+        when(signType) {
+            SignType.ITEM -> ManyDirection.SOUTH
+            SignType.STANDING -> ManyDirection.values()[it]
+            SignType.WALL -> ManyDirection.valueOf(SidewaysDirection.values()[it].name)
         }
+    }
 
     override fun clone() = Sign(signType, facing)
 

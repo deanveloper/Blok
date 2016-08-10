@@ -1,24 +1,26 @@
 package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
-import com.deanveloper.blok.util.Data
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 
 /**
+ * Slabs are unfortunately not very mutable
+ *
  * @author Dean B
  */
 class Slab(
-        var volume: Volume = Slab.Volume.TOP,
-        var type: SlabType = Slab.SlabType.STONE
+        section: Section = Slab.Section.BOTTOM,
+        val doubleSlab: Boolean = false,
+        val type: SlabType = Slab.SlabType.STONE
 ) : BlockData, ItemData {
-    override val id: String
-        get() {
+    override val id: String = run {
             //special case
-            if (type == SlabType.PURPUR && (volume == Volume.ALL || volume == Volume.SMOOTH_ALL)) {
-                return "purpur_double_slab"
+            if (type == SlabType.PURPUR && doubleSlab) {
+                "purpur_double_slab"
             } else {
-                return buildString {
-                    if (volume == Volume.ALL || volume == Volume.SMOOTH_ALL) append("double_")
+                buildString {
+                    if (doubleSlab) append("double_")
                     append(type.id)
                 }
             }
@@ -37,23 +39,17 @@ class Slab(
             else -> throw IllegalStateException("String id is not valid! ($id)")
         }
 
-    override val rawData: Nibble
-        get() {
-            var data = Nibble()
-            data[0b0111] = type.data
-            data[0b1000] = volume == Volume.TOP || volume == Volume.SMOOTH_ALL
+    override var rawData = Nibble()
 
-            return data
-        }
+    var section: Section by NibbleStorage(0b1000, section, { Section.values()[it] })
 
-    override fun clone(): Data {
-        throw UnsupportedOperationException()
-    }
+    override fun clone() = Slab(section, doubleSlab, type)
 
     enum class SlabType(val id: String, val data: Int) {
         STONE("stone_slab", 0),
         SANDSTONE("stone_slab", 1),
-        @Deprecated("Not used") WOOD_OLD("stone_slab", 2),
+        @Deprecated("Not used", ReplaceWith("OAK_WOOD"))
+        WOOD_OLD("stone_slab", 2),
         COBBLESTONE("stone_slab", 3),
         BRICKS("stone_slab", 4),
         STONE_BRICK("stone_slab", 5),
@@ -69,10 +65,8 @@ class Slab(
         DARK_OAK_WOOD("wooden_slab", 5);
     }
 
-    enum class Volume {
-        TOP,
+    enum class Section {
         BOTTOM,
-        ALL,
-        SMOOTH_ALL
+        TOP
     }
 }

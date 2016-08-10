@@ -15,12 +15,15 @@ interface Powerable {
  * @author Dean B
  */
 interface PowerSource {
-    val output: Int
+    var output: Byte
 }
 
 interface BinaryPowerSource : PowerSource {
-    val powering: Boolean
+    var powering: Boolean
 
-    override val output: Int
+    override var output: Byte
         get() = if (powering) 15 else 0
+        set(value) {
+            powering = value > 0
+        }
 }

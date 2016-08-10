@@ -51,7 +51,7 @@ enum class Material {
     RED_MUSHROOM(),
     GOLD_BLOCK(),
     IRON_BLOCK(),
-    DOUBLE_STONE_SLAB(Slab(Slab.Volume.ALL, Slab.SlabType.STONE)),
+    DOUBLE_STONE_SLAB(Slab(Slab.Section.ALL, Slab.SlabType.STONE)),
     STONE_SLAB(Slab()),
     BRICK_BLOCK(),
     TNT(Tnt()),

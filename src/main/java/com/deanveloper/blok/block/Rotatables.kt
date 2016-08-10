@@ -35,6 +35,19 @@ enum class SidewaysDirection(override val asInt: Int) : DirectionRepresentation 
     SOUTH(3),
     WEST(4),
     EAST(5);
+
+    companion object {
+        fun fromInt(i: Int): SidewaysDirection {
+            return when(i) {
+                2 -> NORTH
+                3 -> SOUTH
+                4 -> WEST
+                5 -> EAST
+
+                else -> throw IllegalArgumentException("Int $i does not map to a SidewaysDirection")
+            }
+        }
+    }
 }
 
 enum class ManyDirection : DirectionRepresentation {

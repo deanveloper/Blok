@@ -2,6 +2,7 @@ package com.deanveloper.blok.block
 
 import com.deanveloper.blok.item.ItemData
 import com.deanveloper.blok.util.Nibble
+import com.deanveloper.blok.util.NibbleStorage
 import com.deanveloper.blok.util.toNybble
 
 /**
@@ -10,7 +11,7 @@ import com.deanveloper.blok.util.toNybble
  * @author Dean B
  */
 class Furnace(
-        override var facing: SidewaysDirection = SidewaysDirection.NORTH,
+        facing: SidewaysDirection = SidewaysDirection.NORTH,
         var lit: Boolean = false
 ) : BlockData, ItemData, Rotatable<SidewaysDirection> {
 
@@ -18,8 +19,9 @@ class Furnace(
         get() = if (lit) "lit_furnace" else "furnace"
     override val intId: Int
         get() = if (lit) 62 else 61
-    override val rawData: Nibble
-        get() = facing.asInt.toNybble()
+    override var rawData = Nibble()
+
+    override var facing: SidewaysDirection by NibbleStorage(0b1111, facing, { SidewaysDirection.values()[it] })
 
     override fun clone() = Furnace(facing, lit)
 
