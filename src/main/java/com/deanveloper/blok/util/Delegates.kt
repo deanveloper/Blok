@@ -1,6 +1,5 @@
 package com.deanveloper.blok.util
 
-import com.deanveloper.blok.block.DirectionRepresentation
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
 import kotlin.properties.ReadWriteProperty
@@ -11,9 +10,7 @@ val BOOLEAN_MAPPER: (Int) -> Boolean = { if (it == 1) true else false }
 
 val BYTE_MAPPER: (Int) -> Byte = { it.toByte() }
 
-val DIRECTION_MAPPER: (Int) -> DirectionRepresentation = { }
-
-class NybbleStorage<R : Data, T>(
+class NybbleStorage<in R : Data, T>(
         val mask: Int,
         init: T,
         mapper: (Int) -> T
